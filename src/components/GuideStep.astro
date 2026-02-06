@@ -1,0 +1,22 @@
+---
+interface Props {
+    total?: number;
+}
+
+const { total = 7 } = Astro.props;
+
+// Extract step number from the URL
+// Example: /docs/0401-expo-notifications/02-arquitectura/ -> extracts 2
+const pathname = Astro.url.pathname;
+const segments = pathname.split("/").filter(Boolean);
+const lastSegment = segments[segments.length - 1];
+
+const match = lastSegment?.match(/^(\d+)/);
+const stepNumber = match ? parseInt(match[1], 10) : 0;
+---
+
+<div class="mb-10">
+    <span class="text-sm font-medium text-[var(--red)]"
+        >Paso {stepNumber} de {total}</span
+    >
+</div>

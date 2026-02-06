@@ -1,0 +1,20 @@
+---
+interface Props {
+    variant?: "primary" | "blue" | "purple" | "green";
+}
+
+const { variant = "primary" } = Astro.props;
+
+const styles = {
+    primary: "font-bold text-[var(--sl-color-accent-high)]",
+    blue: "font-bold text-[var(--blue)]",
+    purple: "font-bold text-[var(--purple)]",
+    green: "font-bold text-[var(--green)]",
+};
+
+const className = styles[variant] || styles.primary;
+---
+
+<span class={className}>
+    <slot />
+</span>

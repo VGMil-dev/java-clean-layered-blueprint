@@ -1,0 +1,40 @@
+---
+title: RepoJava
+description: Platforma central para material y documentación de proyectos.
+template: splash
+hero:
+  tagline: Tu centro de comando para la documentación académica.
+  image:
+    file: ../../assets/logo.png
+  actions:
+    - text: Explorar Material
+      link: /0401-expo-notifications/01-introduccion/
+      icon: right-arrow
+      variant: primary
+    - text: GitHub del Curso
+      link: https://github.com
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<div class="hero-html">
+  <p style="font-size: 1.5rem; text-align: center; max-width: 800px; margin: 0 auto 3rem; line-height: 1.6; text-wrap: balance;">
+    Bienvenido a <strong style="color: var(--sl-color-accent);">RepoJava</strong>. <br/>
+    Aquí centralizamos todo el conocimiento: desde guías paso a paso hasta la documentación técnica de nuestros proyectos.
+  </p>
+</div>
+
+<CardGrid stagger>
+	<Card title="Documentación Clara" icon="open-book">
+		Guías detalladas para implementar funcionalidades complejas.
+	</Card>
+	<Card title="Recursos del Curso" icon="rocket">
+		Acceso directo a repositorios, librerías y herramientas.
+	</Card>
+	<Card title="Proyectos Reales" icon="laptop">
+		Ejemplos prácticos y casos de estudio para aplicar lo aprendido.
+	</Card>
+</CardGrid>
+

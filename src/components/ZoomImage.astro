@@ -1,0 +1,226 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    src: ImageMetadata;
+    alt: string;
+}
+
+const { src, alt } = Astro.props;
+---
+
+<zoom-image>
+    <button class="thumbnail-wrapper group" aria-label="Zoom image">
+        <Image
+            src={src}
+            alt={alt}
+            class="thumbnail shadow-lg border border-[var(--sl-color-gray-4)] group-hover:border-[var(--sl-color-accent)] transition-all duration-300"
+        />
+        <div class="overlay">
+            <span
+                class="text-xs font-mono text-[var(--sl-color-gray-1)] bg-[var(--sl-color-bg-nav)]/80 px-2 py-1 rounded"
+                >CLICK TO ZOOM</span
+            >
+        </div>
+    </button>
+
+    <dialog class="zoom-dialog">
+        <div class="dialog-content">
+            <Image src={src} alt={alt} class="full-image" />
+            <button class="close-btn" aria-label="Close zoom">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><line x1="18" y1="6" x2="6" y2="18"></line><line
+                        x1="6"
+                        y1="6"
+                        x2="18"
+                        y2="18"></line></svg
+                >
+            </button>
+        </div>
+    </dialog>
+</zoom-image>
+
+<script>
+    class ZoomImage extends HTMLElement {
+        constructor() {
+            super();
+            const btn = this.querySelector(".thumbnail-wrapper");
+            const dialog = this.querySelector("dialog");
+            const closeBtn = this.querySelector(".close-btn");
+
+            // Open
+            btn?.addEventListener("click", () => {
+                dialog?.showModal();
+                document.body.style.overflow = "hidden"; // Prevent scroll
+            });
+
+            // Close functions
+            const close = () => {
+                dialog?.close();
+                document.body.style.overflow = ""; // Restore scroll
+            };
+
+            closeBtn?.addEventListener("click", close);
+
+            // Close on backdrop click
+            dialog?.addEventListener("click", (e) => {
+                if (e.target === dialog) close();
+            });
+
+            // Close on Escape (native dialog behavior, but let's ensure scroll restore)
+            dialog?.addEventListener("close", () => {
+                document.body.style.overflow = "";
+            });
+        }
+    }
+    customElements.define("zoom-image", ZoomImage);
+</script>
+
+<style>
+    zoom-image {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 2rem 0;
+    }
+
+    .thumbnail-wrapper {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: zoom-in;
+        border-radius: 0.75rem;
+        overflow: hidden;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .thumbnail {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.75rem;
+    }
+
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .thumbnail-wrapper:hover .overlay {
+        opacity: 1;
+    }
+
+    /* Dialog Styles */
+    .zoom-dialog {
+        border: none;
+        background: transparent;
+        padding: 0;
+        max-width: 100vw;
+        max-height: 100vh;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        display: none;
+    }
+
+    .zoom-dialog[open] {
+        display: flex;
+    }
+
+    .zoom-dialog::backdrop {
+        background: var(--sl-color-bg);
+        opacity: 0.9;
+        backdrop-filter: blur(8px);
+        animation: fade-in 0.3s ease-out;
+    }
+
+    .dialog-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        animation: zoom-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .full-image {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 0.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: -3.5rem;
+        right: -3.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: var(--sl-color-bg-nav);
+        border: 1px solid var(--sl-color-gray-4);
+        color: var(--sl-color-gray-1);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .close-btn:hover {
+        background: white;
+        color: black;
+        transform: rotate(90deg);
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes zoom-in {
+        from {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
