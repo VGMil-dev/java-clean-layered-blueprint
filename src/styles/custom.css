@@ -15,7 +15,22 @@
     --sl-font-system: 'JetBrains Mono', monospace;
     --sl-font-mono: 'JetBrains Mono', monospace;
     --sl-line-height: 1.7;
-    /* Mejor espaciado vertical */
+    /* SwingHierarchy Styles */
+    --swing-bg-main: #07080a;
+    --swing-bg-node: #14151a;
+    --swing-bg-node-active: #1e1f26;
+    --swing-border-white-low: rgba(255, 255, 255, 0.05);
+    --swing-border-white-medium: rgba(255, 255, 255, 0.1);
+    --swing-border-white-high: rgba(255, 255, 255, 0.2);
+    --swing-bg-white-low: rgba(255, 255, 255, 0.05);
+    --swing-bg-white-medium: rgba(255, 255, 255, 0.1);
+    --swing-text-inactive: rgba(255, 255, 255, 0.4);
+    --swing-text-medium: rgba(255, 255, 255, 0.8);
+    --swing-icon-inactive: rgba(255, 255, 255, 0.3);
+    --swing-edge-inactive: rgba(255, 255, 255, 0.02);
+    --swing-shadow-main: 0 0 100px rgba(0, 0, 0, 0.9);
+    --swing-shadow-text: 0 2px 10px rgba(0, 0, 0, 0.8);
+    --swing-shadow-desc: 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 body {

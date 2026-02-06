@@ -59,15 +59,15 @@ const SwingNode = ({ data }: NodeProps) => {
     const isActive = data.isActive;
     const Icon = IconMap[data.icon as keyof typeof IconMap] || Box;
 
-    let borderColor = "border-white/10";
-    let bgGradient = "bg-[#14151a]";
-    let textColor = "text-white/40";
-    let iconColor = "text-white/30";
+    let borderColor = "border-[var(--swing-border-white-medium)]";
+    let bgGradient = "bg-[var(--swing-bg-node)]";
+    let textColor = "text-[var(--swing-text-inactive)]";
+    let iconColor = "text-[var(--swing-icon-inactive)]";
     let glow = "";
 
     if (isActive) {
         borderColor = "border-[var(--sl-color-accent)]";
-        bgGradient = "bg-[#1e1f26]";
+        bgGradient = "bg-[var(--swing-bg-node-active)]";
         textColor = "text-white";
         iconColor = "text-[var(--sl-color-accent)]";
         glow = "shadow-[0_0_40px_rgba(var(--sl-color-accent-rgb),0.4)]";
@@ -88,7 +88,7 @@ const SwingNode = ({ data }: NodeProps) => {
         <div className={`px-6 py-4 rounded-[24px] border-2 transition-all duration-[1000ms] min-w-[220px] font-mono ${bgGradient} ${borderColor} ${glow} ${isActive ? 'scale-110 opacity-100 ring-2 ring-[var(--sl-color-accent)]/20' : 'scale-95 opacity-70'}`}>
             <Handle type="target" position={Position.Top} className="!opacity-0" />
             <div className="flex items-center gap-4">
-                <div className={`p-2.5 rounded-xl bg-white/5 ${iconColor} transition-all duration-700 ${isActive ? 'scale-110' : ''}`}>
+                <div className={`p-2.5 rounded-xl bg-[var(--swing-bg-white-low)] ${iconColor} transition-all duration-700 ${isActive ? 'scale-110' : ''}`}>
                     <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
                 </div>
                 <div className="flex flex-col">
@@ -117,13 +117,13 @@ const initialNodes: Node[] = [
 ];
 
 const initialEdges: Edge[] = [
-    { id: 'e1', source: 'object', target: 'component', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
-    { id: 'e2', source: 'component', target: 'container', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
-    { id: 'e3', source: 'container', target: 'jcomponent', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
-    { id: 'e4', source: 'container', target: 'window', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
-    { id: 'e5', source: 'jcomponent', target: 'jpanel', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
-    { id: 'e6', source: 'window', target: 'frame', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
-    { id: 'e7', source: 'frame', target: 'jframe', type: 'cinematic', style: { stroke: '#ffffff05', strokeWidth: 2 } },
+    { id: 'e1', source: 'object', target: 'component', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
+    { id: 'e2', source: 'component', target: 'container', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
+    { id: 'e3', source: 'container', target: 'jcomponent', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
+    { id: 'e4', source: 'container', target: 'window', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
+    { id: 'e5', source: 'jcomponent', target: 'jpanel', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
+    { id: 'e6', source: 'window', target: 'frame', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
+    { id: 'e7', source: 'frame', target: 'jframe', type: 'cinematic', style: { stroke: 'var(--swing-edge-inactive)', strokeWidth: 2 } },
 ];
 
 const animationSteps = [
@@ -166,7 +166,7 @@ const FlowContent = ({ currentStep }: { currentStep: number }) => {
                     animated: isActive,
                     style: {
                         ...edge.style,
-                        stroke: isActive ? 'var(--sl-color-accent)' : '#ffffff05',
+                        stroke: isActive ? 'var(--sl-color-accent)' : 'var(--swing-edge-inactive)',
                         strokeWidth: isActive ? 4 : 2,
                         opacity: isActive ? 1 : 0.15,
                     },
@@ -203,7 +203,7 @@ const FlowContent = ({ currentStep }: { currentStep: number }) => {
             selectionOnDrag={false}
             proOptions={{ hideAttribution: true }}
         >
-            <Background variant={BackgroundVariant.Dots} gap={40} size={1} color="#ffffff05" />
+            <Background variant={BackgroundVariant.Dots} gap={40} size={1} color="var(--swing-edge-inactive)" />
         </ReactFlow>
     );
 };
@@ -221,22 +221,22 @@ export default function SwingHierarchy() {
     const step = animationSteps[currentStep];
 
     return (
-        <div className="h-[600px] w-full bg-[#07080a] rounded-[48px] border-4 border-white/5 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.9)] my-24 relative group select-none font-mono">
+        <div className="h-[600px] w-full bg-[var(--swing-bg-main)] rounded-[48px] border-4 border-[var(--swing-border-white-low)] overflow-hidden shadow-[var(--swing-shadow-main)] my-24 relative group select-none font-mono">
             {/* Overlay Gradient for Cinematic Feel */}
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--sl-color-accent)]/10 to-transparent pointer-events-none z-10" />
 
             <div className="absolute top-12 left-12 z-20 pointer-events-none max-w-[450px]">
                 <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-3xl w-fit">
+                    <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-[var(--swing-bg-white-medium)] border border-[var(--swing-border-white-high)] backdrop-blur-3xl w-fit">
                         <div className="w-2.5 h-2.5 rounded-full bg-[var(--sl-color-accent)] animate-pulse shadow-[0_0_20px_var(--sl-color-accent)]" />
                         <span className="text-[13px] font-black text-white uppercase tracking-[0.5em]">Cinematic Flow</span>
                     </div>
 
                     <div className="flex flex-col gap-3 transition-all duration-1000">
-                        <h3 className="text-3xl font-bold text-white tracking-widest drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] animate-in fade-in slide-in-from-left-6 duration-1000" key={`title-${currentStep}`}>
+                        <h3 className="text-3xl font-bold text-white tracking-widest drop-shadow-[var(--swing-shadow-text)] animate-in fade-in slide-in-from-left-6 duration-1000" key={`title-${currentStep}`}>
                             {step.title}
                         </h3>
-                        <p className="text-base text-white/80 leading-relaxed font-semibold drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)] animate-in fade-in slide-in-from-left-6 duration-1000 delay-150" key={`desc-${currentStep}`}>
+                        <p className="text-base text-[var(--swing-text-medium)] leading-relaxed font-semibold drop-shadow-[var(--swing-shadow-desc)] animate-in fade-in slide-in-from-left-6 duration-1000 delay-150" key={`desc-${currentStep}`}>
                             {step.desc}
                         </p>
                     </div>
@@ -251,7 +251,7 @@ export default function SwingHierarchy() {
                 {animationSteps.map((_, idx) => (
                     <div
                         key={idx}
-                        className={`h-2 rounded-full transition-all duration-1000 ${idx === currentStep ? 'bg-[var(--sl-color-accent)] w-16 shadow-[0_0_20px_var(--sl-color-accent)]' : 'bg-white/5 w-3'}`}
+                        className={`h-2 rounded-full transition-all duration-1000 ${idx === currentStep ? 'bg-[var(--sl-color-accent)] w-16 shadow-[0_0_20px_var(--sl-color-accent)]' : 'bg-[var(--swing-bg-white-low)] w-3'}`}
                     />
                 ))}
             </div>
