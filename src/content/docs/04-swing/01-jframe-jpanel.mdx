@@ -1,0 +1,214 @@
+---
+title: "JFrame y JPanel"
+description: "Aprende los fundamentos de Java Swing trabajando con marcos y paneles."
+---
+
+import CustomCard from '@components/CustomCard.astro';
+import { CardGrid, Steps, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+import SwingHierarchy from '@components/SwingHierarchy.tsx';
+
+<Aside type="note" title="Dato Clave">Domina la construcción de interfaces gráficas profesionales en Java utilizando los cimientos de la arquitectura Swing.  </Aside>
+
+
+## El Ecosistema Swing
+
+Swing no es solo una biblioteca de "dibujo"; es un framework robusto estructurado para ser flexible y multiplataforma. Antes de escribir código, es crucial entender su posición en el ecosistema Java.
+
+<CardGrid stagger>
+  <CustomCard title="Abstracto" icon="Monitor">
+    Los componentes son **"Lightweight"** (ligeros): no dependen de los elementos nativos del OS, lo que garantiza consistencia total.
+  </CustomCard>
+  <CustomCard title="Controlador" icon="Blocks">
+    Basado en **Pluggable Look and Feel**, permitiendo que la interfaz cambie de piel dinámicamente sin tocar la lógica.
+  </CustomCard>
+  <CustomCard title="Jerárquico" icon="GitGraph">
+    Todo en Swing sigue una **Jerarquía de Contención**, donde unos elementos "viven" dentro de otros.
+  </CustomCard>
+</CardGrid>
+
+---
+
+## Entendiendo la Jerarquía de Clases
+
+La potencia de Swing reside en la herencia. Observemos cómo un simple botón o ventana hereda capacidades de dibujo y gestión de eventos desde lo más profundo del JDK.
+
+<SwingHierarchy client:load />
+
+<Aside type="note" title="Dato Clave">
+  Notarás que las clases de Swing empiezan con **'J'** (`JFrame`, `JPanel`, `JButton`). Esto las diferencia de sus homólogas pesadas de AWT.
+</Aside>
+
+---
+
+## Los Contenedores Base: Una Metáfora
+
+Para dominar Swing, piensa en la interfaz como un **edificio construido por capas**:
+
+### 1. JFrame: El Edificio 
+Es el marco exterior. Proporciona la infraestructura básica: barra de título, botones de control (cerrar, maximizar) y el borde. Sin un edificio, no tienes donde poner nada.
+
+| Propiedad | Método | Propósito |
+| :--- | :--- | :--- |
+| **Título** | `setTitle(String)` | Identifica la aplicación para el usuario. |
+| **Cierre** | `setDefaultCloseOperation()` | Evita que el proceso quede colgado en RAM al cerrar. |
+| **Tamaño** | `setSize(w, h)` | Define las dimensiones iniciales en píxeles. |
+| **Ubicación** | `setLocationRelativeTo(null)` | Centra la ventana en la pantalla del usuario. |
+| **Geometría** | `setBounds(x, y, w, h)` | Define posición y tamaño en una sola instrucción. |
+| **Visibilidad** | `setVisible(true)` | Envía la orden de renderizado final al sistema. |
+
+---
+
+## El Contenedor: JPanel
+
+El `JPanel` es un lienzo dentro del marco. Un edificio puede tener muchas habitaciones, cada una organizada de forma distinta. El `JPanel` agrupa componentes y, lo más importante, **gestiona su distribución**.
+
+<Aside type="danger" title="Configuración Inicial">
+  Al principio usaremos **`setLayout(null)`** para posicionar elementos de forma absoluta con coordenadas exactas usando `setBounds`.
+</Aside>
+
+---
+
+## Implementación Paso a Paso
+
+Construyamos nuestra primera ventana usando posicionamiento absoluto:
+
+<Steps>
+
+1.  **Instanciar el Marco**: Creamos el "Edificio" principal.
+    ```java
+    JFrame miMarco = new JFrame("Mastering Swing");
+    ```
+
+2.  **Configurar el Contenedor**: Preparamos el "Lienzo" y quitamos el Layout automático.
+    ```java
+    JPanel miPanel = new JPanel();
+    miPanel.setLayout(null); // Activamos posicionamiento absoluto
+    miPanel.setBackground(new Color(30, 30, 30)); 
+    ```
+
+3.  **Añadir Componentes**: Definimos su posición exacta.
+    ```java
+    JButton miBoton = new JButton("Enviar Datos");
+    miBoton.setBounds(50, 50, 150, 40); // x, y, ancho, alto
+    miPanel.add(miBoton);
+    ```
+
+4.  **Ensamblaje**: Unimos las piezas y lanzamos.
+    ```java
+    miMarco.add(miPanel);
+    miMarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    miMarco.setSize(400, 300);
+    miMarco.setVisible(true);
+    ```
+
+</Steps>
+
+---
+
+## Laboratorio de Código: Estructuras de Proyecto
+
+<Tabs>
+  <TabItem label="Modo Básico (Rápido)">
+    Ideal para pruebas rápidas. Usamos posicionamiento absoluto (`null`).
+
+    ```java
+    // proyecto/src/main/java/com/example/EjemploBasico.java
+    import javax.swing.*;
+    import java.awt.*;
+
+    public class EjemploBasico {
+        public static void main(String[] args) {
+            // 1. Instanciación directa de nuestra ventana
+            JFrame miMarco = new JFrame("App Rápida");
+            miMarco.setLayout(null); // Posicionamiento manual
+            
+            // 2. Configuración
+            miMarco.setSize(400, 300);
+            miMarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            // 3. Agregar componentes
+            JLabel miEtiqueta = new JLabel("Hola desde el Main!");
+            miEtiqueta.setBounds(20, 20, 200, 30);
+            
+            JButton miBoton = new JButton("Click");
+            miBoton.setBounds(20, 60, 100, 30);
+            
+            miMarco.add(miEtiqueta);
+            miMarco.add(miBoton);
+            
+            // 4. Mostrar
+            miMarco.setLocationRelativeTo(null); 
+            miMarco.setVisible(true);
+        }
+    }
+    ```
+  </TabItem>
+  
+  <TabItem label="Modo Profesional (Herencia)">
+    OOP con posicionamiento absoluto para mayor control inicial.
+
+    ```java
+    // proyecto/src/main/java/com/example/Vistas/MiVentana.java
+    import javax.swing.*;
+    import java.awt.*;
+
+    **Archivo 1: La Interfaz**
+    class MiVentana extends JFrame {
+        public MiVentana() {
+            super("Arquitectura Profesional Swing");
+            
+            this.configurarRelleno();
+            this.crearComponentes();
+            this.configurarVentana();
+            
+            this.setVisible(true); 
+        }
+
+        private void configurarRelleno() {
+            JPanel miPanel = new JPanel();
+            miPanel.setLayout(null); // Posicionamiento libre
+            miPanel.setBackground(new Color(45, 45, 45));
+            this.setContentPane(miPanel);
+        }
+
+        private void crearComponentes() {
+            JLabel miTexto = new JLabel("Interfaz basada en Herencia");
+            miTexto.setForeground(Color.WHITE);
+            miTexto.setBounds(50, 50, 250, 30);
+            this.add(miTexto);
+        }
+
+        private void configurarVentana() {
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setSize(500, 400); 
+            this.setLocationRelativeTo(null);
+        }
+    }
+    ```
+
+    **Archivo 2: El Lanzador**
+    ```java
+    // proyecto/src/main/java/com/example/Principal.java
+    import com.example.Vistas.MiVentana;
+
+    public class Principal {
+        public static void main(String[] args) {
+            // Creamos el objeto de nuestra ventana personalizada
+            new MiVentana();
+        }
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+<Aside type="tip" title="¿Por qué usar Herencia?">
+  Al extender de `JFrame`, puedes crear múltiples instancias de tu ventana con configuraciones idénticas, añadir métodos personalizados para manejar lógica propia de la interfaz y mantener el método `main` limpio y enfocado solo en el arranque.
+</Aside>
+
+---
+
+<Aside type="caution" title="Error Fatídico">
+  Olvidar `JFrame.EXIT_ON_CLOSE` es el error #1. La ventana se cerrará visualmente, pero el programa **seguirá consumiendo memoria** en segundo plano.
+</Aside>

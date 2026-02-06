@@ -4,13 +4,31 @@
     --sl-color-bg: #120f0d;
     --sl-color-gray-6: #120f0d;
     --sl-color-gray-5: #2a211b;
-    --sl-color-white: #f5ede4;
-    --sl-color-gray-1: #f5ede4;
-    --sl-color-gray-2: #a89984;
+    --sl-color-white: #ffffff;
+    --sl-color-gray-1: #fcfaf8;
+    --sl-color-gray-2: #e2d9d0;
+    /* Aumentado contraste para lectura */
     --sl-color-accent-low: #3d2308;
     --sl-color-accent: #d97706;
     --sl-color-accent-high: #f59e0b;
     --gold-primary: #ffdb58;
+    --sl-font-system: 'JetBrains Mono', monospace;
+    --sl-font-mono: 'JetBrains Mono', monospace;
+    --sl-line-height: 1.7;
+    /* Mejor espaciado vertical */
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-weight: 450;
+    /* Un toque más de peso para JetBrains Mono */
+}
+
+body,
+:root {
+    --sl-content-width: 60rem !important;
 }
 
 [data-theme='dark'] .sidebar-content {

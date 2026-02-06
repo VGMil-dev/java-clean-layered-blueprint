@@ -19,9 +19,14 @@ export default defineConfig({
         ],
         social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
         sidebar: [
-
+            {
+                label: 'Swing',
+                items: [
+                    { label: 'JFrame y JPanel', link: '/04-swing/01-jframe-jpanel' },
+                ],
+            },
         ],
-		}), react()],
+    }), react()],
 
     vite: {
         plugins: [tailwindcss()],
