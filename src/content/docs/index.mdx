@@ -17,7 +17,8 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid } from '@astrojs/starlight/components';
+import CustomCard from '@components/CustomCard.astro';
 
 <div class="hero-html">
   <p style="font-size: 1.5rem; text-align: center; max-width: 800px; margin: 0 auto 3rem; line-height: 1.6; text-wrap: balance;">
@@ -27,14 +28,15 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 </div>
 
 <CardGrid stagger>
-	<Card title="Documentación Clara" icon="open-book">
-		Guías detalladas para implementar funcionalidades complejas.
-	</Card>
-	<Card title="Recursos del Curso" icon="rocket">
-		Acceso directo a repositorios, librerías y herramientas.
-	</Card>
-	<Card title="Proyectos Reales" icon="laptop">
-		Ejemplos prácticos y casos de estudio para aplicar lo aprendido.
-	</Card>
+	<CustomCard title="Documentación Clara" icon="BookOpen">
+		Guías detalladas para implementar funcionalidades complejas con explicaciones paso a paso.
+	</CustomCard>
+	<CustomCard title="Recursos del Curso" icon="Rocket">
+		Acceso directo a repositorios, librerías y herramientas esenciales para tu aprendizaje.
+	</CustomCard>
+	<CustomCard title="Proyectos Reales" icon="Laptop">
+		Ejemplos prácticos y casos de estudio reales para aplicar tus conocimientos en entornos profesionales.
+	</CustomCard>
 </CardGrid>
+
 

@@ -5,7 +5,7 @@ description: Generates a napkin-style sketch image for a given topic and saves i
 
 # Napkin Generator Skill
 
-Use this skill when the user wants a "napkin style", "hand drawn", or "rough sketch" image, especially for the RepoMovil project.
+Use this skill when the user wants a "napkin style", "hand drawn", or "rough sketch" image, especially for the RepoJava project.
 
 ## Instructions
 
@@ -15,10 +15,10 @@ Use this skill when the user wants a "napkin style", "hand drawn", or "rough ske
     *   Call the `generate_image` tool.
     *   **ImageName**: `napkin_[subject_snake_case]` (e.g., `napkin_login_flow`).
     *   **Prompt**: 
-        > "Digital hand-drawn diagram in the style of napkin.ai. Professional technical architecture diagram depicting [SUBJECT]. **Text MUST be in SPANISH**. Key terms: [SPANISH_TERMS]. Background: Transparent (or solid dark hex #121617 if transparency not supported). Lines are clean white and chalk-white. Accents in Java Red (#b91c1c) and Maroon. High contrast, neon-like but hand-drawn aesthetic. No paper texture. Clean, readable, professional. Context: Modern Java/Spring architecture."
+        > "Digital hand-drawn diagram in the style of napkin.ai. Professional technical architecture diagram depicting [SUBJECT]. **Text MUST be in SPANISH**. Key terms: [SPANISH_TERMS]. Background: Transparent (or solid dark hex #120f0d). Lines are clean white and off-white. Accents in Gold (#f59e0b) and Amber. High contrast, premium dark mode aesthetic. No paper texture. Clean, readable, professional. Context: Modern Java/Spring architecture with a premium documentation feel."
 
 3.  **Locate and Move**:
-    *   The `generate_image` tool will save the file to the artifacts directory. Examples of this path are usually shown in the tool output (e.g., `/Users/name/.gemini/antigravity/brain/...`).
+    *   The `generate_image` tool will save the file to the artifacts directory.
     *   You MUST move or copy this file to the project's assets folder: `src/assets/`.
     *   Construct the target path: `src/assets/napkin_[subject_snake_case].png`.
     *   Use `run_command` to copy the file.

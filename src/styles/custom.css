@@ -1,63 +1,29 @@
 @import "tailwindcss";
 
 :root {
-    --sl-color-accent-low: #3c1f1e;
-    --sl-color-accent: #ea6962;
-    --sl-color-accent-high: #f28c86;
-    /* Gruvbox Red palette */
-    --sl-hue-accent: 0;
-    --sl-hue-red: 0;
-    /* Typography */
-    --sl-font-system-sans: 'JetBrains Mono', monospace;
-    --sl-font-mono: 'JetBrains Mono', monospace;
-
-    /* Gruvbox Palette */
-    --red: #ea6962;
-    --orange: #e78a4e;
-    --yellow: #d8a657;
-    --green: #a9b665;
-    --aqua: #89b482;
-    --blue: #7daea3;
-    --purple: #d3869b;
+    --sl-color-bg: #120f0d;
+    --sl-color-gray-6: #120f0d;
+    --sl-color-gray-5: #2a211b;
+    --sl-color-white: #f5ede4;
+    --sl-color-gray-1: #f5ede4;
+    --sl-color-gray-2: #a89984;
+    --sl-color-accent-low: #3d2308;
+    --sl-color-accent: #d97706;
+    --sl-color-accent-high: #f59e0b;
+    --gold-primary: #ffdb58;
 }
 
-body,
-:root {
-    font-family: 'JetBrains Mono', monospace !important;
-    --sl-font-system-sans: 'JetBrains Mono', monospace !important;
-    --sl-content-width: 65rem !important;
+[data-theme='dark'] .sidebar-content {
+    background-color: #1a1512;
+    border-right: 1px solid var(--sl-color-accent);
 }
 
-
-[data-theme='dark'] {
-    --sl-color-bg-nav: #1d2021;
-    --sl-color-bg: #282828;
-    --sl-color-bg-sidebar: #1d2021;
-    --sl-color-gray-1: #fbf1c7;
-    --sl-color-gray-2: #ebdbb2;
-    --sl-color-gray-3: #a89984;
-    --sl-color-gray-4: #665c54;
-    --sl-color-gray-5: #32302f;
-    --sl-color-gray-6: #282828;
+::selection {
+    background-color: var(--sl-color-accent);
+    color: white;
 }
 
-[data-theme='light'] {
-    --sl-color-bg-nav: #ebdbb2;
-    --sl-color-bg: #fbf1c7;
-    --sl-color-bg-sidebar: #ebdbb2;
-    --sl-color-gray-1: #1d2021;
-    --sl-color-gray-2: #282828;
-    --sl-color-gray-3: #504945;
-    --sl-color-gray-4: #7c6f64;
-    --sl-color-gray-5: #d5c4a1;
-    --sl-color-gray-6: #fbf1c7;
-    --sl-color-text-sidebar: #1d2021;
-    --sl-color-text: #1d2021;
-    --sl-color-text-accent: #9d0006;
-    --sl-color-heading: #1d2021;
-}
-
-.hero-html h1 {
-    color: var(--sl-color-accent-high);
-    text-shadow: 0 0 20px rgba(185, 28, 28, 0.3);
+.starlight-aside--tip {
+    border-color: var(--gold-primary) !important;
+    background-color: rgba(255, 219, 88, 0.1) !important;
 }
