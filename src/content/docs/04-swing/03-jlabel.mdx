@@ -1,0 +1,49 @@
+---
+title: "JLabel: Etiquetas"
+description: "Aprende a mostrar texto e imágenes de forma estática en tu interfaz Swing."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JLabelHierarchy } from '../../../components/SwingHierarchies';
+
+<JLabelHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  El `JLabel` es un componente no interactivo diseñado para **mostrar información**. Se usa para títulos, instrucciones de formularios o descripciones cortas.
+</Aside>
+
+## Métodos Frecuentes
+
+| Método | Propósito | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `setText(String)` | Cambia el contenido del texto. | Permite actualizar la información mostrada dinámicamente. |
+| `setFont(Font)` | Define la tipografía y tamaño. | Ayuda a crear jerarquías visuales (títulos vs. párrafos). |
+| `setForeground(Color)` | Cambia el color del texto. | Mejora la legibilidad y estética según el fondo. |
+| `setHorizontalAlignment()` | Alinea el texto. | Útil para centrar etiquetas dentro de un espacio definido. |
+
+---
+
+## Ejemplo de Implementación
+
+```java
+import javax.swing.*;
+import java.awt.Font;
+import java.awt.Color;
+
+public class MiEtiqueta extends JLabel {
+
+    public MiEtiqueta() {
+        // Inicializamos con texto
+        super("Bienvenido al Sistema");
+        
+        // Estilizado
+        this.setFont(new Font("Arial", Font.BOLD, 18));
+        this.setForeground(Color.BLUE);
+        this.setBounds(20, 20, 250, 30); // x, y, ancho, alto (obligatorio en Layout null)
+    }
+}
+```
+
+<Aside type="tip" title="Soporte HTML">
+  ¡Dato curioso! Los `JLabel` aceptan código HTML básico. Puedes usar `<html><b>Texto</b> en <br> varias líneas</html>` para dar un formato rápido sin usar múltiples componentes.
+</Aside>

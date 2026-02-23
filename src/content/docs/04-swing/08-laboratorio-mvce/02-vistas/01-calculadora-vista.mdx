@@ -1,0 +1,63 @@
+---
+title: "01. CalculadoraVista"
+description: "Interfaz principal de la calculadora."
+---
+
+# Clase CalculadoraVista
+
+Esta clase extiende de `JFrame` y define la disposición visual de los componentes de entrada y control.
+
+## Diseño de la Interfaz
+
+```java
+package calculadora.Vistas;
+
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class CalculadoraVista extends JFrame {
+    private JTextField txtNumero1 = new JTextField(10);
+    private JTextField txtNumero2 = new JTextField(10);
+    private JButton btnSuma = new JButton("+");
+    private JButton btnResta = new JButton("-");
+    private JButton btnMulti = new JButton("*");
+    private JButton btnDiv = new JButton("/");
+    private JButton btnHistorial = new JButton("Ver Historial");
+    private JLabel lblRes = new JLabel("?");
+
+    public CalculadoraVista() {
+        super("Calculadora");
+        this.setLayout(new FlowLayout());
+        this.setVisible(true);
+        this.setSize(250, 200);
+        this.add(txtNumero1);
+        this.add(txtNumero2);
+        this.add(btnSuma);
+        this.add(btnResta);
+        this.add(btnMulti);
+        this.add(btnDiv);
+        this.add(btnHistorial);
+        this.add(lblRes);
+    }
+
+    // Getters para el Controlador
+    public String getNumero1() { return txtNumero1.getText(); }
+    public String getNumero2() { return txtNumero2.getText(); }
+    public void setResultado(String res) { lblRes.setText(res); }
+    
+    public JButton getBtnSuma() { return btnSuma; }
+    public JButton getBtnResta() { return btnResta; }
+    public JButton getBtnMulti() { return btnMulti; }
+    public JButton getBtnDiv() { return btnDiv; }
+    public JButton getBtnHistorial() { return btnHistorial; }
+}
+```
+
+## Aspectos de Diseño
+
+1. **Encapsulamiento**: Todos los componentes Swing son `private`. El controlador accede a ellos mediante métodos públicos (getters).
+2. **Layout Simple**: Utiliza `FlowLayout` para organizar los elementos de forma secuencial.
+3. **Responsabilidad**: La vista **no contiene lógica** de cálculo ni de eventos; solo expone sus componentes.

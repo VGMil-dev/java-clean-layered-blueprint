@@ -1,0 +1,62 @@
+---
+title: "JFrame: El Edificio"
+description: "Aprende a crear y configurar la ventana principal de tu aplicación utilizando JFrame."
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import { JFrameHierarchy } from '../../../components/SwingHierarchies';
+
+<JFrameHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  El `JFrame` es el contenedor de nivel superior. Imagínalo como el **edificio** que alberga toda tu interfaz: proporciona la barra de título, los botones de control (cerrar, minimizar) y el marco general.
+</Aside>
+
+## Métodos Imprescindibles
+
+Para que una ventana sea funcional y se comporte como esperamos, debemos dominar estos métodos de la clase `JFrame`:
+
+| Método | ¿Para qué sirve? | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `setTitle(String)` | Define el texto en la barra de título. | Identifica la aplicación para el usuario en la barra de tareas. |
+| `setSize(int w, int h)` | Establece el ancho y alto inicial. | Define el área de trabajo disponible para los componentes. |
+| `setDefaultCloseOperation()` | Define qué pasa al pulsar la 'X'. | **Vital:** Evita que el programa siga corriendo en RAM tras cerrar la ventana. |
+| `setLocationRelativeTo(null)` | Posiciona la ventana. | Al pasar `null`, la ventana aparece perfectamente centrada en la pantalla. |
+| `setResizable(boolean)` | Permite o bloquea el cambio de tamaño. | Evita que el usuario deforme un diseño basado en posicionamiento absoluto. |
+| `setLayout(LayoutManager)` | Define cómo se organizan los hijos. | Al empezar, usamos `null` para posicionar elementos con coordenadas exactas. |
+| `setVisible(true)` | Hace que la ventana aparezca. | Siempre debe ser el **último método** llamado para asegurar el renderizado correcto. |
+
+---
+
+## Estructura de Creación
+
+Un `JFrame` profesional no suele instanciarse directamente en el `main`, sino que se extiende para encapsular su propia configuración.
+
+### Ejemplo por Herencia
+
+```java
+import javax.swing.JFrame;
+
+public class MiVentana extends JFrame {
+
+    public MiVentana() {
+        // 1. Título de la ventana
+        super("Mi Aplicación Java"); 
+
+        // 2. Configuración base
+        this.setSize(500, 400);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null); // Centrar
+        
+        // 3. Layout (empezamos con null para control total)
+        this.setLayout(null); 
+
+        // Al final, la hacemos visible
+        this.setVisible(true);
+    }
+}
+```
+
+<Aside type="danger" title="Error Común">
+  Si olvidas `setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)`, tu aplicación cerrará la ventana pero el proceso de Java seguirá activo en el Administrador de Tareas, consumiendo recursos innecesariamente.
+</Aside>

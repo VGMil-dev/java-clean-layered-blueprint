@@ -1,0 +1,36 @@
+---
+title: "02. Clase Historial"
+description: "Gestión de almacenamiento de cálculos previos."
+---
+
+# Clase Historial
+
+La clase `Historial` es responsable de coleccionar todas las operaciones realizadas durante la sesión.
+
+## Implementación
+
+```java
+package calculadora.Modelos;
+
+public class Historial {
+    private Operacion[] datos = new Operacion[10];
+    private int contador = 0;
+
+    public void agregar(Operacion op) {
+        if (contador < datos.length) {
+            datos[contador] = op;
+            contador++;
+        }
+    }
+
+    public Operacion[] getDatos() {
+        return datos;
+    }
+}
+```
+
+## Características
+
+* **Almacenamiento Acotado**: Utiliza un array fijo de 10 elementos para simplificar la gestión de memoria en este nivel pedagógico.
+* **Control de Índice**: La variable `contador` asegura que no se sobrepase el límite del array.
+* **Encapsulamiento**: Expone los datos mediante `getDatos()` para que los controladores puedan consultarlos.

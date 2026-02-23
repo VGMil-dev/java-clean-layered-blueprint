@@ -1,0 +1,46 @@
+---
+title: "02. CalculadoraController"
+description: "El cerebro que conecta Modelos, Vistas y Eventos."
+---
+
+# Clase CalculadoraController
+
+El controlador actúa como el "pegamento" o mediador del sistema. Su responsabilidad principal es orquestar la creación de objetos y asignar los manejadores de eventos.
+
+## Implementación de Orquestación
+
+```java
+package calculadora.Controladores;
+
+import calculadora.Controladores.Eventos.*;
+import calculadora.Modelos.Historial;
+import calculadora.Vistas.CalculadoraVista;
+import calculadora.Vistas.HistorialVista;
+
+public class CalculadoraController {
+    private CalculadoraVista cv;
+    private Historial historial;
+    
+    public CalculadoraController(){
+        cv = new CalculadoraVista();
+        historial = new Historial();
+        insertarEventos();
+    }
+    
+    public void insertarEventos(){
+        cv.getBtnSuma().addActionListener(new SumaEventButton(cv, historial));
+        cv.getBtnResta().addActionListener(new RestaEventButton(cv, historial));
+        cv.getBtnMulti().addActionListener(new MultiEventButton(cv, historial));
+        cv.getBtnDiv().addActionListener(new DivEventButton(cv, historial));
+        cv.getBtnHistorial().addActionListener(new AbrirHistorialButton(historial, new HistorialVista()));
+    }
+}
+```
+
+## Flujo de Trabajo
+
+1. **Instanciación**: En el constructor, crea la vista principal (`CalculadoraVista`) y la fuente de datos (`Historial`).
+2. **Inyección de Dependencias**: Al crear los eventos, les "pasa" las referencias necesarias (la vista o el historial) para que puedan trabajar.
+3. **Cableado**: Utiliza `addActionListener` para conectar la lógica desacoplada de los eventos con los botones físicos de la interfaz.
+
+Este patrón permite que si el diseño de la calculadora cambia, el controlador solo necesite actualizar el "cableado", sin tocar la lógica matemática.

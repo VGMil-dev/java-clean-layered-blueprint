@@ -1,0 +1,50 @@
+---
+title: "JTextField: Campos de Texto"
+description: "Aprende a capturar datos del usuario y transformarlos para su procesamiento."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JTextFieldHierarchy } from '../../../components/SwingHierarchies';
+
+<JTextFieldHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  El `JTextField` permite al usuario escribir una línea de texto. Es la herramienta principal para recibir nombres, cantidades, correos o cualquier dato alfabético o numérico.
+</Aside>
+
+## Métodos de Gestión de Datos
+
+| Método | Propósito | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `getText()` | Recupera lo escrito. | **Esencial:** Permite obtener el dato para procesarlo en el modelo. |
+| `setText(String)` | Limpia o llena el campo. | Útil para vaciar el campo tras pulsar "Guardar". |
+| `setColumns(int)` | Ancho sugerido. | Define el tamaño visual si no usamos posicionamiento absoluto. |
+| `setEditable(boolean)` | Bloquea la edición. | Permite mostrar datos que el usuario no debe modificar. |
+
+---
+
+## El Desafío del Tipado: Parsing
+
+Todo lo que escribe el usuario llega a Java como un `String`. Si necesitamos hacer operaciones matemáticas, debemos **parsear** (convertir) el dato.
+
+### Estrategias de Conversión
+
+| Tipo Destino | Método de Conversión | Ejemplo |
+| :--- | :--- | :--- |
+| **Entero (int)** | `Integer.parseInt(str)` | `int edad = Integer.parseInt(campo.getText());` |
+| **Decimal (double)** | `Double.parseDouble(str)` | `double precio = Double.parseDouble(campo.getText());` |
+| **Booleano (boolean)** | `Boolean.parseBoolean(str)` | `boolean estado = Boolean.parseBoolean(campo.getText());` |
+
+<Aside type="danger" title="Manejo de Errores">
+  Si el usuario escribe "ABC" y tratas de parsearlo a `int`, Java lanzará un `NumberFormatException`. Siempre es recomendable usar bloques `try-catch` para evitar que la aplicación se detenga.
+</Aside>
+
+```java
+try {
+    String datoStr = txtEdad.getText();
+    int edad = Integer.parseInt(datoStr);
+    System.out.println("Edad procesada: " + edad);
+} catch (NumberFormatException e) {
+    System.out.println("Error: El usuario no ingresó un número válido.");
+}
+```

@@ -1,0 +1,63 @@
+---
+title: "JScrollPane: Desplazamiento"
+description: "Añade barras de desplazamiento a tus componentes para manejar contenido extenso."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JScrollPaneHierarchy } from '../../../components/SwingHierarchies';
+
+<JScrollPaneHierarchy client:load />
+
+<Aside type="tip" title="Concepto Clave">
+  El `JScrollPane` es un contenedor especial que "envuelve" a otro componente (como un `JTextArea` o una `JList`) para proporcionar barras de desplazamiento automáticas cuando el contenido supera el tamaño visible.
+</Aside>
+
+## Funcionamiento del "Viewport"
+
+El `JScrollPane` funciona como una ventana corredera:
+1.  El **Viewport** es el área visible.
+2.  El **Componente Cliente** es el objeto real que contiene los datos.
+3.  Las **ScrollBars** aparecen dinámicamente según sea necesario.
+
+## Configuración de Políticas
+
+Puedes controlar cuándo aparecen las barras mediante métodos o en el constructor:
+
+| Constante | Comportamiento |
+| :--- | :--- |
+| `VERTICAL_SCROLLBAR_ALWAYS` | La barra vertical siempre está visible. |
+| `VERTICAL_SCROLLBAR_AS_NEEDED` | Solo aparece si el texto sobresale (Por defecto). |
+| `HORIZONTAL_SCROLLBAR_NEVER` | Nunca muestra la barra horizontal (ideal con `lineWrap`). |
+
+---
+
+## Implementación Correcta
+
+<Aside type="danger" title="Error Común">
+  No añadas el componente y el scroll por separado al marco. **Añade el componente al scroll, y luego el scroll al marco.**
+</Aside>
+
+```java
+import javax.swing.*;
+
+public class EjemploScroll extends JFrame {
+    public EjemploScroll() {
+        JTextArea area = new JTextArea(20, 30);
+        
+        // FORMA CORRECTA: Metemos el área dentro del scroll
+        JScrollPane scroll = new JScrollPane(area);
+        
+        // Configuramos políticas si es necesario
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        
+        // Añadimos el CONTENEDOR (scroll), no el área directamente
+        this.add(scroll);
+        
+        this.setSize(400, 300);
+        this.setVisible(true);
+    }
+}
+```
+
+### ¿Por qué hereda de JComponent?
+A diferencia del `JScrollPane` de AWT, el `JScrollPane` de Swing es un componente ligero que permite personalización extrema de las barras, el fondo y hasta los botones de las esquinas.

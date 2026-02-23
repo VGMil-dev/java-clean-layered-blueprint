@@ -1,0 +1,55 @@
+---
+title: "01. Clase Operacion"
+description: "Lógica de cálculo matemático y manejo de excepciones."
+---
+
+# Clase Operacion
+
+La clase `Operacion` representa una entidad matemática capaz de procesar dos números y un operador. Es el núcleo de la lógica de negocio (Model).
+
+## Estructura del Código
+
+```java
+package calculadora.Modelos;
+
+public class Operacion {
+    public double numero1, numero2, resultado;
+    public String tipo;
+
+    public Operacion(double numero1, double numero2, String tipo) {
+        this.numero1 = numero1;
+        this.numero2 = numero2;
+        this.tipo = tipo;
+        calcular();
+    }
+
+    private void calcular() {
+        if (tipo.equals("+")) {
+            resultado = numero1 + numero2;
+        }
+        if (tipo.equals("-")) {
+            resultado = numero1 - numero2;
+        }
+        if (tipo.equals("*")) {
+            resultado = numero1 * numero2;
+        }
+        if (tipo.equals("/")) {
+            if (numero2 == 0) {
+                throw new ArithmeticException("No se puede dividir por cero");
+            }
+            resultado = numero1 / numero2;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return numero1 + " " + tipo + " " + numero2 + " = " + resultado;
+    }
+}
+```
+
+## Puntos Clave
+
+1. **Auto-cálculo**: Al instanciar la clase, el constructor llama automáticamente al método `calcular()`.
+2. **Manejo de Errores**: En la división, se lanza una `ArithmeticException` si el divisor es cero, protegiendo la integridad del cálculo.
+3. **Representación de Texto**: Sobrescribe `toString()` para facilitar su visualización en el historial.

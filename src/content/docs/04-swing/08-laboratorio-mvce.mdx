@@ -1,0 +1,34 @@
+---
+title: "Laboratorio: Calculadora MVC-E"
+description: "Implementación de una calculadora avanzada siguiendo el patrón Modelo-Vista-Controlador-Evento."
+---
+
+import { MVCEDiagram } from "../../../components/MVCEDiagram";
+
+# Laboratorio: Calculadora MVC-E
+
+En este laboratorio final, consolidamos todos los conocimientos de Swing aplicando una arquitectura profesional. Hemos dividido la aplicación en paquetes que separan la lógica, la interfaz y el control.
+
+<MVCEDiagram client:load />
+
+## Estructura del Proyecto
+
+Para hacer este laboratorio más descriptivo, hemos dividido la explicación en la misma jerarquía que el código fuente:
+
+### 1. Modelos (Lógica y Datos)
+Aquí reside la "inteligencia" de la aplicación.
+- **[Operacion](01-modelos/01-operacion)**: Cálculos matemáticos y validaciones.
+- **[Historial](01-modelos/02-historial)**: Colección de datos en memoria.
+
+### 2. Vistas (Interfaces de Usuario)
+Componentes visuales puros encargados de la interacción con el usuario.
+- **[CalculadoraVista](02-vistas/01-calculadora-vista)**: Frame principal con 5 botones.
+- **[HistorialVista](02-vistas/02-historial-vista)**: Ventana de log con ScrollPane.
+
+### 3. Controladores y Eventos (El Pegamento)
+La capa que gestiona el flujo de información.
+- **[Clases de Evento](03-controladores/01-eventos)**: Lógica específica para cada botón.
+- **[CalculadoraController](03-controladores/02-calculadora-controller)**: Orquestador del cableado.
+
+### 4. Ejecución
+- **[Clase Principal](04-principal)**: Punto de entrada minimalista.

@@ -1,0 +1,42 @@
+---
+title: "02. HistorialVista"
+description: "Ventana secundaria para mostrar el log de operaciones."
+---
+
+# Clase HistorialVista
+
+Esta ventana se especializa en mostrar texto multilínea utilizando componentes de desplazamiento.
+
+## Estructura
+
+```java
+package calculadora.Vistas;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class HistorialVista extends JFrame {
+    private JTextArea txtArea;
+    private JScrollPane panel;
+
+    public HistorialVista() {
+        super("Historial");
+        this.setSize(250, 250);
+        this.setVisible(true);
+        txtArea = new JTextArea(10, 20);
+        panel = new JScrollPane(txtArea);
+        this.add(panel);
+    }
+
+    public void setTexto(String texto) {
+        txtArea.setText(texto);
+    }
+}
+```
+
+## Componentes Utilizados
+
+* **JTextArea**: Permite visualizar múltiples líneas de texto (el historial acumulado).
+* **JScrollPane**: Proporciona barras de desplazamiento automáticas, esenciales cuando el historial crece más allá del tamaño de la ventana.
+* **Separación**: El método `setTexto` permite que cualquier controlador actualice el contenido sin conocer los detalles internos de los componentes Swing.

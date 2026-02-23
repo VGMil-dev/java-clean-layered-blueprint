@@ -1,0 +1,29 @@
+---
+title: "04. Clase Principal"
+description: "El punto de entrada de la aplicación."
+---
+
+# Clase Principal
+
+En una arquitectura limpia, la clase que contiene el método `main` debe ser lo más minimalista posible. Su única función es disparar el proceso inicial.
+
+## Código
+
+```java
+package calculadora;
+
+import calculadora.Controladores.CalculadoraController;
+
+public class Principal {
+
+    public static void main(String[] args) {
+        // Solo instanciamos el controlador principal
+        CalculadoraController cc = new CalculadoraController();
+    }
+    
+}
+```
+
+## Importancia de este diseño
+
+Al delegar toda la lógica al `CalculadoraController`, la clase `Principal` queda libre de responsabilidades. Esto facilita la realización de pruebas automatizadas y mantiene el inicio de la aplicación limpio y predecible.

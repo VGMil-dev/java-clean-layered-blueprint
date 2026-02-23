@@ -1,0 +1,42 @@
+---
+title: "JButton: Botones"
+description: "Convierte tu interfaz en algo interactivo mediante el uso de botones."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JButtonHierarchy } from '../../../components/SwingHierarchies';
+
+<JButtonHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  El `JButton` es el puente entre el usuario y la ejecución de lógica. Al pulsarlo, "dispara" una acción que podemos capturar para que nuestra aplicación *haga* algo.
+</Aside>
+
+## Métodos de Control y Estética
+
+| Método | Propósito | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `setText(String)` | Texto visible en el botón. | Indica al usuario qué acción ejecutará el botón. |
+| `setFocusable(false)` | Quita el borde de foco. | Mejora la estética visual eliminando el cuadro interno al hacer clic. |
+| `setBackground(Color)` | Color del cuerpo. | Permite diferenciar acciones (ej: Rojo para borrar, Verde para guardar). |
+| `setEnabled(boolean)` | Activa/Desactiva el botón. | Evita clics accidentales si los datos de un formulario no son válidos. |
+
+---
+
+## Interacción (Introducción)
+
+Para que el botón "escuche", necesitamos un `ActionListener`. No profundizaremos ahora, pero así se ve la estructura básica:
+
+```java
+JButton miBoton = new JButton("Calcular");
+miBoton.setBounds(100, 100, 120, 40);
+
+// Capturando el clic
+miBoton.addActionListener(e -> {
+    System.out.println("¡Botón presionado!");
+});
+```
+
+<Aside type="tip" title="Mejor Práctica">
+  Evita botones con nombres genéricos como "Botón 1". Usa verbos de acción claros: **Guardar**, **Cancelar**, **Iniciar Sesión**.
+</Aside>

@@ -1,0 +1,66 @@
+---
+title: "JPanel: El Lienzo"
+description: "Domina el uso de JPanel como contenedor intermedio para organizar tus componentes."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JPanelHierarchy } from '../../../components/SwingHierarchies';
+
+<JPanelHierarchy client:load />
+
+<Aside type="tip" title="Concepto Clave">
+  Si el `JFrame` es el edificio, el `JPanel` es una **habitación** o un **lienzo**. Es un contenedor ligero que se coloca dentro del marco para agrupar y organizar componentes.
+</Aside>
+
+## ¿Por qué usar JPanel?
+
+Aunque puedes añadir componentes directamente al `JFrame`, usar `JPanel` ofrece ventajas críticas:
+1. **Organización**: Permite modularizar la interfaz (un panel para el menú, otro para el formulario).
+2. **Estética**: Puedes cambiar fondos, bordes y colores de áreas específicas.
+3. **Distribución**: Cada panel puede tener su propio gestor de diseño (*Layout*).
+
+## Métodos y Configuración Frecuente
+
+| Método | Uso | Por qué usarlo |
+| :--- | :--- | :--- |
+| `setBackground(Color)` | Cambia el color de fondo. | Mejora la estética visual del área de trabajo. |
+| `setLayout(null)` | Desactiva el auto-posicionamiento. | Permite colocar componentes en coordenadas `(x, y)` exactas. |
+| `setBorder(Border)` | Añade un borde decorativo. | Ayuda a delimitar áreas visualmente para el usuario. |
+| `add(Component)` | Inserta un hijo en el panel. | Es la forma de construir la jerarquía visual. |
+
+---
+
+## Implementación Base
+
+Normalmente, el panel se configura y luego se añade al "Content Pane" del marco.
+
+```java
+import javax.swing.*;
+import java.awt.Color;
+
+public class PanelPrincipal extends JPanel {
+
+    public PanelPrincipal() {
+        // Configuramos el lienzo
+        this.setBackground(new Color(45, 45, 45)); // Gris oscuro
+        this.setLayout(null); // Posicionamiento absoluto
+        
+        // Aquí añadiríamos los componentes más adelante
+        // this.add(miBoton);
+    }
+}
+```
+
+### Relación con el JFrame
+
+```java
+JFrame ventana = new JFrame();
+PanelPrincipal miLienzo = new PanelPrincipal();
+
+// Añadimos el panel a la ventana
+ventana.add(miLienzo); 
+```
+
+<Aside type="caution" title="Posicionamiento Absoluto">
+  Al usar `setLayout(null)`, es **obligatorio** definir el tamaño y posición de cada componente hijo mediante `setBounds(x, y, ancho, alto)`, de lo contrario no serán visibles.
+</Aside>

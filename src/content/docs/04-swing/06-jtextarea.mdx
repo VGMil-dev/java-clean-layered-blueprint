@@ -1,0 +1,56 @@
+---
+title: "JTextArea: Bloques de Texto"
+description: "Aprende a usar campos de texto multilínea para descripciones, bitácoras o visualización de datos complejos."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JTextAreaHierarchy } from '../../../components/SwingHierarchies';
+
+<JTextAreaHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  A diferencia de `JTextField`, el `JTextArea` es un componente diseñado para manejar múltiples líneas de texto. Es ideal para mostrar logs, comentarios o resultados extensos.
+</Aside>
+
+## Métodos de manipulación
+
+| Método | Propósito | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `append(String)` | Añade texto al final. | **Ideal para bitácoras:** Permite agregar información sin borrar la anterior. |
+| `setLineWrap(boolean)` | Ajusta el texto al ancho. | Evita que el texto se pierda horizontalmente si es muy largo. |
+| `setWrapStyleWord(boolean)` | Salto por palabra completa. | Mejora la lectura al no cortar palabras a la mitad. |
+| `setRows(int)` / `setColumns(int)` | Define el tamaño base. | Establece las dimensiones iniciales del área de texto. |
+
+---
+
+## Diferencias Clave
+
+| Característica | JTextField | JTextArea |
+| :--- | :--- | :--- |
+| **Líneas** | Única línea. | Multilínea. |
+| **Uso común** | Formularios, entradas cortas. | Notas, registros, visualización de historial. |
+| **Tecla Enter** | Suele disparar un evento de acción. | Crea un salto de línea (caracter `\n`). |
+
+<Aside type="tip" title="Sugerencia Profesional">
+  El `JTextArea` **no incluye barras de desplazamiento** por sí solo. Para que el usuario pueda navegar por textos largos, siempre debe estar dentro de un `JScrollPane`.
+</Aside>
+
+```java
+import javax.swing.*;
+
+public class EjemploArea extends JFrame {
+    public EjemploArea() {
+        JTextArea area = new JTextArea(10, 20);
+        area.setText("Línea 1\n");
+        area.append("Línea 2 añadida dinámicamente");
+        
+        // Configuración de ajuste
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        
+        this.add(area);
+        this.setSize(300, 300);
+        this.setVisible(true);
+    }
+}
+```
