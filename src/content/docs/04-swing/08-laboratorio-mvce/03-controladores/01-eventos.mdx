@@ -11,6 +11,29 @@ En el patrón MVC-E moderno, cada acción significativa del usuario se encapsula
 
 La clase `SumaEventButton` coordina la lectura de la vista y la actualización del modelo.
 
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Usuario
+    participant V as CalculadoraVista
+    participant C as SumaEventButton
+    participant M as Operacion
+    participant H as Historial
+
+    Usuario->>V: Clic en "+"
+    V->>C: actionPerformed(ActionEvent)
+    C->>V: getNumero1()
+    V-->>C: "10"
+    C->>V: getNumero2()
+    V-->>C: "5"
+    Note over C,M: Crea nueva Operación
+    C->>M: new Operacion(10, 5, "+")
+    M-->>C: resultado = 15
+    C->>V: setResultado("= 15.0")
+    C->>H: agregar(Operacion)
+    Note right of H: Persiste en memoria
+```
+
 ```java
 package calculadora.Controladores.Eventos;
 

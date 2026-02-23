@@ -3,11 +3,24 @@ title: "Laboratorio: Calculadora MVC-E"
 description: "Implementación de una calculadora avanzada siguiendo el patrón Modelo-Vista-Controlador-Evento."
 ---
 
-import { MVCEDiagram } from "../../../components/MVCEDiagram";
+import { Aside } from '@astrojs/starlight/components';
+import MVCEDiagram from "../../../components/MVCEDiagram";
+import ZoomImage from "../../../components/ZoomImage.astro";
+import imgSequence from "../../../assets/napkin_mvce_sequence.png";
 
-# Laboratorio: Calculadora MVC-E
+En este laboratorio final, consolidamos todos los conocimientos de Swing aplicando una arquitectura profesional y escalable. 
 
-En este laboratorio final, consolidamos todos los conocimientos de Swing aplicando una arquitectura profesional. Hemos dividido la aplicación en paquetes que separan la lógica, la interfaz y el control.
+<Aside type="caution" title="Arquitectura MVCE">
+  Hemos dividido la aplicación siguiendo el patrón **MVCE (Modelo-Vista-Controlador-Evento)**, lo que permite que cada componente tenga una única responsabilidad clara.
+</Aside>
+
+<ZoomImage src={imgSequence} alt="Diagrama de Secuencia MVCE" />
+
+<Aside type="tip" title="¿Qué estamos viendo?">
+  El diagrama superior muestra el flujo circular de la información: la **Vista** captura el evento, el **Controlador** lo procesa, el **Modelo** realiza el cálculo y finalmente la **Vista** se actualiza con el resultado.
+</Aside>
+
+### Arquitectura Detallada (Interactivo)
 
 <MVCEDiagram client:load />
 

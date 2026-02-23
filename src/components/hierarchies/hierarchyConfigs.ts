@@ -180,5 +180,22 @@ export const HIERARCHY_CONFIGS: Record<string, HierarchyConfig> = {
             { nodes: ['orchestrator'], title: "6. Retorno de Datos", desc: "El Modelo devuelve el resultado procesado al Orquestador para su entrega." },
             { nodes: ['view'], title: "7. Actualización Visual", desc: "El Orquestador indica a la Vista que muestre el resultado final al usuario." },
         ]
+    },
+    JScrollPaneViewport: {
+        nodes: [
+            { id: 'content', type: 'hierarchy', data: { label: 'Client Component', subtitle: 'La Cartulina Gigante', icon: 'jcomponent', isActive: false }, position: { x: 600, y: 100 } },
+            { id: 'viewport', type: 'hierarchy', data: { label: 'Viewport', subtitle: 'Ventana de Observación', icon: 'view', isActive: false }, position: { x: 250, y: 100 } },
+            { id: 'scrollbars', type: 'hierarchy', data: { label: 'Scrollbars', subtitle: 'Barras de Desplazamiento', icon: 'orchestrator', isActive: false }, position: { x: 250, y: 350 } },
+        ],
+        edges: [
+            { id: 'e-vp-content', source: 'viewport', target: 'content', type: 'cinematic', style: { stroke: 'rgba(var(--sl-color-accent-rgb), 0.25)', strokeWidth: 4, opacity: 0.7 } },
+            { id: 'e-sb-vp', source: 'scrollbars', target: 'viewport', type: 'cinematic', style: { stroke: 'rgba(var(--sl-color-accent-rgb), 0.25)', strokeWidth: 4, opacity: 0.7 } },
+        ],
+        steps: [
+            { nodes: ['content'], title: '1. El Componente Cliente', desc: 'Representa el contenido total (ej: una imagen gigante o una tabla con miles de filas).' },
+            { nodes: ['viewport'], title: '2. El Viewport', desc: 'Es el "hueco" o ventana por el que miramos. Solo vemos una fracción del contenido total.' },
+            { nodes: ['scrollbars'], title: '3. Control de Posición', desc: 'Las barras coordinan qué sección del componente cliente debe alinearse con el viewport.' },
+            { nodes: ['viewport', 'content'], title: '4. Interacción Fluida', desc: 'Al usuario le parece que mueve el contenido, pero técnicamente movemos la "cámara" (viewport) sobre él.' }
+        ]
     }
 };

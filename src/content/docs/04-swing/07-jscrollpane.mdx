@@ -5,6 +5,9 @@ description: "Añade barras de desplazamiento a tus componentes para manejar con
 
 import { Aside } from '@astrojs/starlight/components';
 import { JScrollPaneHierarchy } from '../../../components/SwingHierarchies';
+import JScrollPaneDiagram from '../../../components/JScrollPaneDiagram';
+import ZoomImage from '../../../components/ZoomImage.astro';
+import imgViewport from '../../../assets/napkin_jscrollpane_viewport.png';
 
 <JScrollPaneHierarchy client:load />
 
@@ -18,6 +21,14 @@ El `JScrollPane` funciona como una ventana corredera:
 1.  El **Viewport** es el área visible.
 2.  El **Componente Cliente** es el objeto real que contiene los datos.
 3.  Las **ScrollBars** aparecen dinámicamente según sea necesario.
+
+<ZoomImage src={imgViewport} alt="Arquitectura del JScrollPane" />
+
+<JScrollPaneDiagram client:load />
+
+<Aside type="note" title="Visualizando el Viewport">
+  Imagina que tienes una cartulina gigante (el Componente Cliente) y una pequeña ventana recortada en un papel (el Viewport). Al mover el papel sobre la cartulina, solo ves la porción que queda bajo el hueco. Eso es exactamente lo que hace el `JScrollPane`.
+</Aside>
 
 ## Configuración de Políticas
 
