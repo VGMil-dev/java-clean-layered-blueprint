@@ -43,7 +43,7 @@ body {
 
 body,
 :root {
-    --sl-content-width: 60rem !important;
+    --sl-content-width: 70rem !important;
 }
 
 [data-theme='dark'] .sidebar-content {

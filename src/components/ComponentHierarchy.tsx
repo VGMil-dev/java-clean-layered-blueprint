@@ -107,6 +107,8 @@ import type { HierarchyConfig } from './hierarchies/hierarchyConfigs';
 interface HierarchyProps {
     config: HierarchyConfig;
     description: string;
+    controlledStep?: number;
+    isManual?: boolean;
 }
 
 const FlowContent = ({ config, currentStep }: { config: HierarchyConfig, currentStep: number }) => {
@@ -173,15 +175,19 @@ const FlowContent = ({ config, currentStep }: { config: HierarchyConfig, current
     );
 };
 
-export default function ComponentHierarchy({ config, description }: HierarchyProps) {
-    const [currentStep, setCurrentStep] = useState(0);
+export default function ComponentHierarchy({ config, description, controlledStep, isManual }: HierarchyProps) {
+    const [internalStep, setInternalStep] = useState(0);
+
+    const currentStep = isManual && controlledStep !== undefined ? controlledStep : internalStep;
 
     useEffect(() => {
+        if (isManual) return;
+
         const interval = setInterval(() => {
-            setCurrentStep((prev) => (prev + 1) % config.steps.length);
+            setInternalStep((prev) => (prev + 1) % config.steps.length);
         }, 5000);
         return () => clearInterval(interval);
-    }, [config.steps.length]);
+    }, [config.steps.length, isManual]);
 
     const step = config.steps[currentStep];
 
