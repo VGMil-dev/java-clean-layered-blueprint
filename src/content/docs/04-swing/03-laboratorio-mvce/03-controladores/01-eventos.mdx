@@ -3,6 +3,8 @@ title: "01. Clases de Evento"
 description: "Implementación de ActionListener para cada acción de usuario."
 ---
 
+import { Aside } from '@astrojs/starlight/components';
+
 # Gestión de Eventos Específicos
 
 En el patrón MVC-E moderno, cada acción significativa del usuario se encapsula en su propia clase, promoviendo el principio de responsabilidad única.
@@ -90,5 +92,6 @@ public class AbrirHistorialButton implements ActionListener {
 }
 ```
 
-> [!TIP]
-> Nota el uso del bucle `while` y la validación `datos[i] != null`. Este enfoque manual de iteración y concatenación es excelente para entender cómo se procesan las colecciones de datos básicas.
+<Aside type="tip" title="Enfoque Pedagógico">
+  Nota el uso del bucle `while` y la validación `datos[i] != null`. Este enfoque manual de iteración y concatenación es excelente para entender cómo se procesan las colecciones de datos básicas.
+</Aside>

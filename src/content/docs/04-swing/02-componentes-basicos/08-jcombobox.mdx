@@ -1,0 +1,51 @@
+---
+title: "JComboBox: Listas Desplegables"
+description: "Aprende a ofrecer múltiples opciones de selección única en un espacio reducido."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JComboBoxHierarchy } from '../../../../components/SwingHierarchies';
+
+<JComboBoxHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  El `JComboBox` combina un campo de texto y una lista desplegable. Permite al usuario elegir un elemento de una lista predefinida, ahorrando espacio en la interfaz.
+</Aside>
+
+## Métodos Frecuentes
+
+| Método | Propósito | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `getSelectedItem()` | Devuelve el objeto seleccionado. | Recupera la opción elegida por el usuario para procesarla. |
+| `getSelectedIndex()` | Devuelve la posición (0, 1, 2...). | Útil si necesitas el índice en lugar del valor textual. |
+| `addItem(Object)` | Añade una opción a la lista. | Permite poblar la lista dinámicamente desde el Controlador. |
+| `setSelectedItem(Object)`| Cambia la selección actual. | Útil para cargar datos existentes en un formulario. |
+
+---
+
+## Ejemplo de Implementación
+
+```java
+import javax.swing.JComboBox;
+
+public class MiCombo extends JComboBox<String> {
+
+    public MiCombo() {
+        // Añadimos opciones
+        this.addItem("Opción A");
+        this.addItem("Opción B");
+        this.addItem("Opción C");
+        
+        this.setBounds(50, 50, 150, 30);
+    }
+}
+```
+
+<Aside type="caution" title="Tipado (Casting)">
+  Recuerda que `getSelectedItem()` devuelve un `Object`. Si tu combo es de Strings, deberás hacer un cast:  
+  `String seleccion = (String) miCombo.getSelectedItem();`
+</Aside>
+
+<Aside type="tip" title="Modelos de Datos">
+  Para listas muy grandes o que cambian frecuentemente, es mejor usar un `DefaultComboBoxModel`. Esto separa los datos de la visualización, facilitando la integración con el patrón MVCE.
+</Aside>

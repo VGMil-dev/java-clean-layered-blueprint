@@ -1,0 +1,49 @@
+---
+title: "04. Mentor IA"
+description: "Cómo usar la Inteligencia Artificial como espejo de razonamiento."
+---
+
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+import IconText from '../../../../components/IconText';
+import ZoomImage from '../../../../components/ZoomImage.astro';
+
+import iaMentorImg from '../../../../assets/napkin_ia_mentor.png';
+
+
+La IA puede ser tu mejor mentor o tu peor enemigo. Si la usas para copiar código, estás atrofiando tu cerebro. En este viaje de fortalecimiento, no estás solo. Tienes a tu disposición un **Mentor IA** diseñado no para darte el código, sino para desafiar tu lógica.
+
+
+<ZoomImage src={iaMentorImg} alt="Concepto de Mentoría con IA: De la pregunta al razonamiento" />
+
+### ¿Cómo interactuar con tu Mentor?
+<IconText as="h3" icon="GraduationCap" text="El Arte de Preguntar" iconSize={24} iconColor="#3b82f6" />
+
+Un arquitecto no pregunta "¿Cómo hago esto?", pregunta **"¿Por qué esta estructura es mejor?"**.
+
+
+<CardGrid>
+  <Card title="Nivel Junior (Evitar)">
+    <div className="card-header-group">
+      <IconText icon="XCircle" text="Atrofia" iconColor="#ef4444" className="card-label" />
+      <Badge text="Copia" variant="danger" />
+    </div>
+    <p className="card-phrase card-phrase-junior">"Dame el código de un menú en Java Swing..."</p>
+  </Card>
+  <Card title="Nivel Senior (Usar)">
+    <div className="card-header-group">
+      <IconText icon="CheckCircle2" text="Crecimiento" iconColor="#10b981" className="card-label" />
+      <Badge text="Diseño" variant="success" />
+    </div>
+    <p className="card-phrase card-phrase-senior">"¿Cómo puedo separar la validación de stock de mi clase Vista?"</p>
+  </Card>
+</CardGrid>
+
+### El Prompt de Mentoría
+
+Copia este texto para convertir a cualquier IA en un profesor experto:
+
+> "Actúa como mi mentor Senior. No me des código. Mi objetivo es aprender MVCE. Te presentaré un problema y quiero que me hagas preguntas de diseño para que yo descubra la solución por mí mismo."
+
+<Aside type="caution" title="Advertencia de IA">
+  Si la IA te da un código mezclado donde la lógica está en el `actionPerformed`, corrígela. Tú mandas en la arquitectura, ella solo asiste.
+</Aside>

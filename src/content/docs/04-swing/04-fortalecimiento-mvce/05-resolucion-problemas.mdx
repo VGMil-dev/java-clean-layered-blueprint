@@ -1,0 +1,62 @@
+---
+title: "05. Resolución de Problemas"
+description: "Casos prácticos analizados bajo la lupa del MVCE."
+---
+
+import { Aside, Steps, Card, CardGrid, Badge } from '@astrojs/starlight/components';
+import IconText from '../../../../components/IconText';
+
+Apliquemos el sistema de diseño mental a un caso real: un **Gestor de Inventario**.
+
+### <IconText icon="Lightbulb" text="El Problema" iconSize={24} iconColor="#f59e0b" />
+Una tienda necesita aplicar un **10% de descuento** si hay más de 10 unidades en stock de un producto.
+
+### Descomposición por Pilares
+
+<Steps>
+1.  **El Modelo**
+    <IconText icon="Brain" text="Cerebro 🧠" iconColor="#3b82f6" className="font-bold mb-1" />
+    Definimos la lógica pura. 
+    - Atributos: `nombre`, `stock`, `precio`.
+    - Inteligencia: Un método `getPrecioConDescuento()` que evalúa el stock. No hay botones aquí.
+
+2.  **La Vista**
+    <IconText icon="Eye" text="Cuerpo 👁️" iconColor="#10b981" className="font-bold mb-1" />
+    Diseñamos los sentidos:
+    - `JTextField` para capturar el stock.
+    - `JLabel` para mostrar el resultado.
+    La vista es sorda y ciega a la regla del 10%.
+
+3.  **El Controlador**
+    <IconText icon="Puzzle" text="Conexión 🧩" iconColor="#059669" className="font-bold mb-1" />
+    Escucha el evento, extrae el número del texto, se lo envía al Modelo y actualiza la etiqueta con la respuesta.
+</Steps>
+
+<Card title="Desafío Maestro: El Cambio Inevitable">
+  <IconText icon="AlertTriangle" text="¡Atención!" iconSize={48} iconColor="#f59e0b" className="mb-4" />
+  Supongamos que el cliente cambia de opinión: el descuento ahora es de un **20%**. 
+
+  **¿Qué archivo abres?**
+  
+  <CardGrid>
+    <Card title="La Decisión Errónea">
+      <div className="card-header-group">
+        <IconText icon="XCircle" text="Evitar" iconColor="#ef4444" className="card-label" />
+        <Badge text="Acoplamiento" variant="danger" />
+      </div>
+      <p className="card-phrase card-phrase-junior">Modificar el `actionPerformed` en el Controlador o la Vista. Mezclas lógica con control.</p>
+    </Card>
+    <Card title="La Decisión de Arquitecto">
+      <div className="card-header-group">
+        <IconText icon="CheckCircle" text="Usar" iconColor="#10b981" className="card-label" />
+        <Badge text="Abstracción" variant="success" />
+      </div>
+      <p className="card-phrase card-phrase-senior">Vas directo al **Modelo**. Cambias el 10 por un 20. Guardas. Todo lo demás sigue funcionando sin cambios.</p>
+    </Card>
+  </CardGrid>
+</Card>
+
+<Aside type="caution" title="La Moraleja">
+  <IconText icon="Sparkles" text="Tip Maestro" iconColor="#f59e0b" className="font-bold mb-2" />
+  <p>El desacoplamiento no es para que el código sea más "bonito", es para que tu vida como programador sea más fácil cuando las reglas cambien.</p>
+</Aside>

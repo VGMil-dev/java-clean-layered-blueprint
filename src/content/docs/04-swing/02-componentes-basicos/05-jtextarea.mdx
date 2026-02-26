@@ -4,7 +4,7 @@ description: "Aprende a usar campos de texto multilínea para descripciones, bit
 ---
 
 import { Aside } from '@astrojs/starlight/components';
-import { JTextAreaHierarchy } from '../../../components/SwingHierarchies';
+import { JTextAreaHierarchy } from '../../../../components/SwingHierarchies';
 
 <JTextAreaHierarchy client:load />
 
@@ -35,6 +35,32 @@ import { JTextAreaHierarchy } from '../../../components/SwingHierarchies';
   El `JTextArea` **no incluye barras de desplazamiento** por sí solo. Para que el usuario pueda navegar por textos largos, siempre debe estar dentro de un `JScrollPane`.
 </Aside>
 
+## Visualización de Listas
+
+Es común usar el `JTextArea` para mostrar el contenido de arreglos o colecciones.
+
+```java
+// Ejemplo: Generar un reporte desde un arreglo
+String[] datos = {"Teclado", "Mouse", null, "Monitor", "Cables"};
+String reporte = "";
+int i = 0;
+
+while (i < datos.length) {
+    if (datos[i] != null) {
+        reporte += "- " + datos[i] + "\n";
+    }
+    i++;
+}
+area.setText(reporte);
+```
+
+<Aside type="tip" title="Enfoque Pedagógico">
+  Nota el uso del bucle `while` y la validación `datos[i] != null`. Este enfoque manual de iteración y concatenación es excelente para entender cómo se procesan las colecciones de datos básicas.
+</Aside>
+
+---
+
+## Implementación Base
 ```java
 import javax.swing.*;
 

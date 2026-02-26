@@ -5,6 +5,7 @@ import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
+import mermaid from 'astro-mermaid';
 
 export default defineConfig({
     integrations: [starlight({
@@ -24,40 +25,37 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     { label: 'JFrame: El Edificio', link: '/04-swing/01-jframe' },
-                    { label: 'JPanel: El Lienzo', link: '/04-swing/02-jpanel' },
                     {
                         label: 'Componentes Básicos',
-                        items: [
-                            { label: 'JLabel: Etiquetas', link: '/04-swing/03-jlabel' },
-                            { label: 'JButton: Botones', link: '/04-swing/04-jbutton' },
-                            { label: 'JTextField: Campos de Texto', link: '/04-swing/05-jtextfield' },
-                            { label: 'JTextArea: Bloques de Texto', link: '/04-swing/06-jtextarea' },
-                            { label: 'JScrollPane: Desplazamiento', link: '/04-swing/07-jscrollpane' },
-                        ]
+                        autogenerate: { directory: '04-swing/02-componentes-basicos' }
                     },
                     {
                         label: 'Laboratorio: MVC-E',
                         items: [
-                            { label: 'Introducción', link: '/04-swing/08-laboratorio-mvce' },
+                            { label: 'Introducción', link: '/04-swing/03-laboratorio-mvce' },
                             {
                                 label: '1. Modelos',
-                                autogenerate: { directory: '04-swing/08-laboratorio-mvce/01-modelos' },
+                                autogenerate: { directory: '04-swing/03-laboratorio-mvce/01-modelos' },
                             },
                             {
                                 label: '2. Vistas',
-                                autogenerate: { directory: '04-swing/08-laboratorio-mvce/02-vistas' },
+                                autogenerate: { directory: '04-swing/03-laboratorio-mvce/02-vistas' },
                             },
                             {
                                 label: '3. Controladores',
-                                autogenerate: { directory: '04-swing/08-laboratorio-mvce/03-controladores' },
+                                autogenerate: { directory: '04-swing/03-laboratorio-mvce/03-controladores' },
                             },
-                            { label: '4. Clase Principal', link: '/04-swing/08-laboratorio-mvce/04-principal' },
+                            { label: '4. Clase Principal', link: '/04-swing/03-laboratorio-mvce/04-principal' },
                         ]
+                    },
+                    {
+                        label: 'Fortalecimiento MVCE',
+                        autogenerate: { directory: '04-swing/04-fortalecimiento-mvce' },
                     },
                 ],
             },
         ],
-    }), react()],
+    }), react(), mermaid()],
 
     vite: {
         plugins: [tailwindcss()],

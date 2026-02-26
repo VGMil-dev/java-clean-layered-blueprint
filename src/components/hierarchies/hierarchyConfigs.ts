@@ -197,5 +197,41 @@ export const HIERARCHY_CONFIGS: Record<string, HierarchyConfig> = {
             { nodes: ['scrollbars'], title: '3. Control de Posición', desc: 'Las barras coordinan qué sección del componente cliente debe alinearse con el viewport.' },
             { nodes: ['viewport', 'content'], title: '4. Interacción Fluida', desc: 'Al usuario le parece que mueve el contenido, pero técnicamente movemos la "cámara" (viewport) sobre él.' }
         ]
+    },
+    JCheckBox: {
+        nodes: [
+            ...baseNodes,
+            { id: 'abstractbutton', type: 'hierarchy', data: { label: 'AbstractButton', subtitle: 'javax.swing', icon: 'jcomponent', isActive: false }, position: { x: 250, y: 360 } },
+            { id: 'jtogglebutton', type: 'hierarchy', data: { label: 'JToggleButton', subtitle: 'javax.swing', icon: 'jcomponent', isActive: false }, position: { x: 250, y: 480 } },
+            { id: 'jcheckbox', type: 'hierarchy', data: { label: 'JCheckBox', subtitle: 'javax.swing', icon: 'jcheckbox', isActive: false }, position: { x: 250, y: 600 } }
+        ],
+        edges: [
+            ...baseEdges,
+            { id: 'e-jcomp-abs', source: 'jcomponent', target: 'abstractbutton', type: 'cinematic', style: { stroke: 'rgba(var(--sl-color-accent-rgb), 0.25)', strokeWidth: 4, opacity: 0.7 } },
+            { id: 'e-abs-tog', source: 'abstractbutton', target: 'jtogglebutton', type: 'cinematic', style: { stroke: 'rgba(var(--sl-color-accent-rgb), 0.25)', strokeWidth: 4, opacity: 0.7 } },
+            { id: 'e-tog-chk', source: 'jtogglebutton', target: 'jcheckbox', type: 'cinematic', style: { stroke: 'rgba(var(--sl-color-accent-rgb), 0.25)', strokeWidth: 4, opacity: 0.7 } }
+        ],
+        steps: [
+            { nodes: ['object'], title: 'Raíz', desc: 'Object' },
+            { nodes: ['jcomponent'], title: 'Base Swing', desc: 'JComponent' },
+            { nodes: ['abstractbutton'], title: 'Abstracción', desc: 'Define estados comunes (presionado, seleccionado).' },
+            { nodes: ['jtogglebutton'], title: 'Botón de Estado', desc: 'Base para botones que mantienen su estado.' },
+            { nodes: ['jcheckbox'], title: 'JCheckBox', desc: 'El componente final para selecciones binarias.' }
+        ]
+    },
+    JComboBox: {
+        nodes: [
+            ...baseNodes,
+            { id: 'jcombobox', type: 'hierarchy', data: { label: 'JComboBox', subtitle: 'javax.swing', icon: 'jcombobox', isActive: false }, position: { x: 250, y: 360 } }
+        ],
+        edges: [
+            ...baseEdges,
+            { id: 'e-jcomp-cmb', source: 'jcomponent', target: 'jcombobox', type: 'cinematic', style: { stroke: 'rgba(var(--sl-color-accent-rgb), 0.25)', strokeWidth: 4, opacity: 0.7 } }
+        ],
+        steps: [
+            { nodes: ['object'], title: 'Raíz', desc: 'Object' },
+            { nodes: ['jcomponent'], title: 'Base Swing', desc: 'JComponent' },
+            { nodes: ['jcombobox'], title: 'JComboBox', desc: 'Lista desplegable que permite selección única.' }
+        ]
     }
 };

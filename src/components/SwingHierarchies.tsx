@@ -50,3 +50,17 @@ export const JScrollPaneHierarchy = () => (
         description="Jerarquía de JScrollPane"
     />
 );
+
+export const JCheckBoxHierarchy = () => (
+    <ComponentHierarchy
+        config={HIERARCHY_CONFIGS.JCheckBox}
+        description="Jerarquía de JCheckBox"
+    />
+);
+
+export const JComboBoxHierarchy = () => (
+    <ComponentHierarchy
+        config={HIERARCHY_CONFIGS.JComboBox}
+        description="Jerarquía de JComboBox"
+    />
+);

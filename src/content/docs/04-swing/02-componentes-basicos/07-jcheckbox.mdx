@@ -1,0 +1,46 @@
+---
+title: "JCheckBox: Casillas de Verificación"
+description: "Aprende a capturar estados binarios (activado/desactivado) en tu interfaz Swing."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { JCheckBoxHierarchy } from '../../../../components/SwingHierarchies';
+
+<JCheckBoxHierarchy client:load />
+
+<Aside type="note" title="Concepto Clave">
+  El `JCheckBox` es un componente de tipo "conmutador" que permite al usuario seleccionar o deseleccionar una opción. A diferencia de los RadioButtons, las casillas de verificación suelen ser independientes entre sí.
+</Aside>
+
+## Métodos Frecuentes
+
+| Método | Propósito | ¿Por qué usarlo? |
+| :--- | :--- | :--- |
+| `isSelected()` | Devuelve `true` si está marcada. | **Esencial** para que el Controlador tome decisiones basadas en el estado. |
+| `setSelected(boolean)` | Marca o desmarca la casilla. | Permite resetear formularios o cargar preferencias guardadas. |
+| `setText(String)` | Define la etiqueta al lado de la casilla. | Indica al usuario qué opción está activando. |
+
+---
+
+## Ejemplo de Implementación
+
+```java
+import javax.swing.JCheckBox;
+import java.awt.Font;
+
+public class MiCheck extends JCheckBox {
+
+    public MiCheck() {
+        super("Suscripción al boletín");
+        this.setFont(new Font("Arial", Font.PLAIN, 14));
+        this.setBounds(50, 50, 200, 30);
+        
+        // Estado inicial
+        this.setSelected(true);
+    }
+}
+```
+
+<Aside type="tip" title="Uso en MVCE">
+  En un entorno MVCE, el `JCheckBox` es ideal para campos opcionales. El Controlador llamará a `view.isCheckBoxSelected()` y pasará ese boolean al Modelo para aplicar lógica (ej: calcular un descuento o activar un servicio adicional).
+</Aside>
