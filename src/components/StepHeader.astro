@@ -8,13 +8,13 @@ interface Props {
 const { number, title, variant = "purple" } = Astro.props;
 
 const colors = {
-    purple: { bg: "bg-[#d3869b]", text: "text-[#d3869b]" },
-    pink: { bg: "bg-[#d3869b]", text: "text-[#d3869b]" },
-    cyan: { bg: "bg-[#89b482]", text: "text-[#89b482]" },
-    green: { bg: "bg-[#a9b665]", text: "text-[#a9b665]" },
-    orange: { bg: "bg-[#e78a4e]", text: "text-[#e78a4e]" },
-    yellow: { bg: "bg-[#d8a657]", text: "text-[#d8a657]" },
-    red: { bg: "bg-[#ea6962]", text: "text-[#ea6962]" },
+    purple: { bg: "bg-[var(--purple)]", text: "text-[var(--purple)]" },
+    pink: { bg: "bg-[var(--purple)]", text: "text-[var(--purple)]" },
+    cyan: { bg: "bg-[var(--blue)]", text: "text-[var(--blue)]" },
+    green: { bg: "bg-[var(--green)]", text: "text-[var(--green)]" },
+    orange: { bg: "bg-[var(--orange)]", text: "text-[var(--orange)]" },
+    yellow: { bg: "bg-[var(--yellow)]", text: "text-[var(--yellow)]" },
+    red: { bg: "bg-[var(--red)]", text: "text-[var(--red)]" },
 };
 
 const color = colors[variant] || colors.purple;

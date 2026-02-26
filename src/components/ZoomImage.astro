@@ -127,8 +127,9 @@ const { src, alt } = Astro.props;
     .overlay {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.3);
+        background: var(--swing-overlay-bg);
         display: flex;
+
         align-items: center;
         justify-content: center;
         opacity: 0;
@@ -177,7 +178,7 @@ const { src, alt } = Astro.props;
         max-width: 100%;
         max-height: 90vh;
         border-radius: 0.5rem;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        box-shadow: var(--swing-shadow-main);
         animation: float 3s ease-in-out infinite;
     }
 
@@ -188,7 +189,7 @@ const { src, alt } = Astro.props;
         width: 2.5rem;
         height: 2.5rem;
         border-radius: 50%;
-        background: var(--sl-color-bg-nav);
+        background: var(--swing-close-btn-bg);
         border: 1px solid var(--sl-color-gray-4);
         color: var(--sl-color-gray-1);
         cursor: pointer;
@@ -199,8 +200,8 @@ const { src, alt } = Astro.props;
     }
 
     .close-btn:hover {
-        background: white;
-        color: black;
+        background: var(--sl-color-accent);
+        color: white;
         transform: rotate(90deg);
     }
 

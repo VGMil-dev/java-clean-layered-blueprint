@@ -12,10 +12,10 @@ const IconComponent = icon ? (Lucide[icon] as any) : null;
 
 <div class="relative group h-full transition-all duration-500 overflow-visible">
     <div
-        class="relative h-full bg-[var(--sl-color-bg)] rounded-[15px] p-6 flex flex-col gap-5 overflow-hidden border border-white/5 group-hover:border-[var(--sl-color-accent)]/30 transition-colors duration-500"
+        class="relative h-full bg-[var(--sl-color-bg)] rounded-[15px] p-6 flex flex-col gap-5 overflow-hidden border border-[var(--swing-card-border)] group-hover:border-[var(--sl-color-accent)]/30 transition-colors duration-500"
     >
         <div
-            class="absolute -right-12 -top-12 w-40 h-40 bg-[var(--sl-color-accent)] opacity-0 group-hover:opacity-10 blur-[60px] transition-opacity duration-700 rounded-full pointer-events-none"
+            class="absolute -right-12 -top-12 w-40 h-40 bg-[var(--sl-color-accent)] opacity-0 group-hover:opacity-20 blur-[60px] transition-opacity duration-700 rounded-full pointer-events-none"
         >
         </div>
 
@@ -28,7 +28,7 @@ const IconComponent = icon ? (Lucide[icon] as any) : null;
                 )
             }
             <h3
-                class="text-xl font-bold text-[var(--sl-color-white)] transition-colors duration-500 group-hover:text-[var(--gold-primary)] tracking-tight !m-0 leading-none"
+                class="text-xl font-bold text-[var(--sl-color-gray-1)] transition-colors duration-500 group-hover:text-[var(--gold-primary)] tracking-tight !m-0 leading-none"
             >
                 {title}
             </h3>

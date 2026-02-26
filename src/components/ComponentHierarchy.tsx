@@ -76,7 +76,7 @@ const HierarchyNode = ({ data }: NodeProps) => {
     if (isActive) {
         borderColor = "border-[var(--sl-color-accent)]";
         bgGradient = "bg-[var(--swing-bg-node-active)]";
-        textColor = "text-white";
+        textColor = "text-[var(--sl-color-white)]";
         iconColor = "text-[var(--sl-color-accent)]";
         glow = "shadow-[0_0_40px_rgba(var(--sl-color-accent-rgb),0.4)]";
     }
@@ -89,8 +89,8 @@ const HierarchyNode = ({ data }: NodeProps) => {
                     <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
                 </div>
                 <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold leading-none mb-1.5">{typeof data.subtitle === 'string' ? data.subtitle : ''}</span>
-                    <span className={`text-[15px] font-bold tracking-tight transition-colors duration-700 ${isActive ? 'text-white' : textColor}`}>{typeof data.label === 'string' ? data.label : ''}</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold leading-none mb-1.5 text-[var(--swing-text-inactive)]">{typeof data.subtitle === 'string' ? data.subtitle : ''}</span>
+                    <span className={`text-[15px] font-bold tracking-tight transition-colors duration-700 ${isActive ? 'text-[var(--sl-color-white)]' : textColor}`}>{typeof data.label === 'string' ? data.label : ''}</span>
                 </div>
             </div>
             <Handle type="source" position={Position.Bottom} className="!opacity-0" />
@@ -162,7 +162,6 @@ const FlowContent = ({ config, currentStep }: { config: HierarchyConfig, current
             edges={edges}
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}
-            colorMode="dark"
             nodesDraggable={false}
             nodesConnectable={false}
             elementsSelectable={false}
@@ -192,16 +191,16 @@ export default function ComponentHierarchy({ config, description, controlledStep
     const step = config.steps[currentStep];
 
     return (
-        <div className="h-[450px] w-full bg-[var(--swing-bg-main)] rounded-[32px] border-2 border-[var(--swing-border-white-low)] overflow-hidden my-8 relative font-mono text-white">
+        <div className="h-[450px] w-full bg-[var(--swing-bg-main)] rounded-[32px] border-2 border-[var(--swing-border-white-low)] overflow-hidden my-8 relative font-mono">
             <div className="absolute top-8 left-8 z-20 pointer-events-none max-w-[400px]">
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--swing-bg-white-medium)] border border-[var(--swing-border-white-high)] backdrop-blur-xl w-fit">
                         <div className="w-2 h-2 rounded-full bg-[var(--sl-color-accent)] animate-pulse" />
-                        <span className="text-[11px] font-bold text-white uppercase tracking-wider">{description}</span>
+                        <span className="text-[11px] font-bold text-[var(--sl-color-white)] uppercase tracking-wider">{description}</span>
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <h3 className="text-xl font-bold text-white transition-all duration-700" key={`title-${currentStep}`}>
+                        <h3 className="text-xl font-bold text-[var(--sl-color-white)] transition-all duration-700" key={`title-${currentStep}`}>
                             {step.title}
                         </h3>
                         <p className="text-sm text-[var(--swing-text-medium)] leading-relaxed" key={`desc-${currentStep}`}>

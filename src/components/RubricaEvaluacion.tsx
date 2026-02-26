@@ -30,42 +30,44 @@ const BORDER_COLORS = {
 };
 
 const TEXT_COLORS = {
-    DA: '#fbbf24',
-    AA: '#60a5fa',
-    PA: '#fb923c',
-    NA: '#f87171',
+    DA: '#b45309', // Darker Amber
+    AA: '#1d4ed8', // Darker Blue
+    PA: '#c2410c', // Darker Orange
+    NA: '#b91c1c', // Darker Red
 };
+
 
 export default function RubricaEvaluacion({ data }: RubricProps) {
     return (
-        <div className="my-8 overflow-hidden rounded-xl border border-white/10 bg-[#120f0d] shadow-2xl">
-            <div className="bg-white/5 p-4 border-b border-white/10">
-                <h3 className="text-xl font-bold text-white m-0">{data.title}</h3>
+        <div className="my-8 overflow-hidden rounded-xl border border-[var(--swing-card-border)] bg-[var(--sl-color-bg)] shadow-2xl">
+            <div className="bg-[var(--sl-color-gray-6)] p-4 border-b border-[var(--swing-card-border)]">
+                <h3 className="text-xl font-bold text-[var(--sl-color-gray-1)] m-0">{data.title}</h3>
             </div>
             <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                     <thead>
-                        <tr className="bg-white/5">
-                            <th className="p-4 text-left font-semibold text-white border-b border-white/10 w-1/4">Criterio / Objetivo</th>
-                            <th className="p-4 text-center font-semibold text-white border-b border-white/10">DA (Destacado)</th>
-                            <th className="p-4 text-center font-semibold text-white border-b border-white/10">AA (Alcanzado)</th>
-                            <th className="p-4 text-center font-semibold text-white border-b border-white/10">PA (Proceso)</th>
-                            <th className="p-4 text-center font-semibold text-white border-b border-white/10">NA (No Alcanzado)</th>
+                        <tr className="bg-[var(--sl-color-gray-6)]">
+                            <th className="p-4 text-left font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)] w-1/4">Criterio / Objetivo</th>
+                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">DA (Destacado)</th>
+                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">AA (Alcanzado)</th>
+                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">PA (Proceso)</th>
+                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">NA (No Alcanzado)</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.criteria.map((item, index) => (
-                            <tr key={index} className="hover:bg-white/5 transition-colors border-b border-white/5 last:border-0">
-                                <td className="p-4 font-medium text-gray-300 bg-white/2">{item.objective}</td>
+                            <tr key={index} className="hover:bg-[var(--sl-color-gray-6)] transition-colors border-b border-[var(--swing-card-border)] last:border-0">
+                                <td className="p-4 font-medium text-[var(--sl-color-gray-2)] bg-[var(--swing-bg-white-low)]">{item.objective}</td>
 
                                 {['DA', 'AA', 'PA', 'NA'].map((lvl) => (
                                     <td key={lvl} className="p-4">
                                         <div
-                                            className="h-full min-h-[80px] p-3 rounded-lg border flex items-center justify-center text-center leading-relaxed"
+                                            className="h-full min-h-[80px] p-3 rounded-lg border flex items-center justify-center text-center leading-relaxed font-medium"
                                             style={{
                                                 backgroundColor: LEVEL_COLORS[lvl as keyof typeof LEVEL_COLORS],
-                                                borderColor: BORDER_COLORS[lvl as keyof typeof BORDER_COLORS] + '44',
-                                                color: TEXT_COLORS[lvl as keyof typeof TEXT_COLORS]
+                                                borderColor: BORDER_COLORS[lvl as keyof typeof BORDER_COLORS] + '66',
+                                                color: TEXT_COLORS[lvl as keyof typeof TEXT_COLORS],
+                                                filter: 'saturate(1.2) contrast(1.1)'
                                             }}
                                         >
                                             {item[lvl as keyof RubricCriterion]}

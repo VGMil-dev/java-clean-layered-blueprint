@@ -1,23 +1,51 @@
 @import "tailwindcss";
 
 :root {
-    --sl-color-bg: #120f0d;
-    --sl-color-gray-6: #120f0d;
-    --sl-color-gray-5: #2a211b;
-    --sl-color-white: #ffffff;
-    --sl-color-gray-1: #fcfaf8;
-    --sl-color-gray-2: #e2d9d0;
-    /* Aumentado contraste para lectura */
-    --sl-color-accent-low: #3d2308;
+    --sl-color-bg: #fcfaf8;
+    --sl-color-gray-6: #f5f2f0;
+    --sl-color-gray-5: #e2d9d0;
+    --sl-color-white: #120f0d;
+    --sl-color-gray-1: #2a211b;
+    --sl-color-gray-2: #3d342d;
+    --sl-color-accent-low: #fef3c7;
     --sl-color-accent: #d97706;
-    --sl-color-accent-high: #f59e0b;
-    --gold-primary: #ffdb58;
+    --sl-color-accent-high: #b45309;
+    --gold-primary: #f59e0b;
+
+    /* Theme colors for GuideStep and Highlight */
+    --red: #ea6962;
+    --blue: #458588;
+    --green: #98971a;
+    --purple: #b16286;
+    --orange: #d65d0e;
+    --yellow: #b57614;
+
+
+    /* Semantic Swing Variables (Light Mode Default) */
+    --swing-bg-main: #f5f2f0;
+    --swing-bg-node: #ffffff;
+    --swing-bg-node-active: #fef3c7;
+    --swing-border-white-low: rgba(0, 0, 0, 0.05);
+    --swing-border-white-medium: rgba(0, 0, 0, 0.1);
+    --swing-border-white-high: rgba(0, 0, 0, 0.15);
+    --swing-bg-white-low: rgba(0, 0, 0, 0.03);
+    --swing-bg-white-medium: rgba(0, 0, 0, 0.05);
+    --swing-text-inactive: rgba(0, 0, 0, 0.5);
+    --swing-text-medium: rgba(0, 0, 0, 0.7);
+    --swing-icon-inactive: rgba(0, 0, 0, 0.4);
+    --swing-edge-inactive: rgba(0, 0, 0, 0.1);
+    --swing-shadow-main: 0 10px 40px rgba(0, 0, 0, 0.05);
+    --swing-shadow-text: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --swing-shadow-desc: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --swing-overlay-bg: rgba(0, 0, 0, 0.4);
+    --swing-card-phrase-bg: rgba(0, 0, 0, 0.04);
+    --swing-card-border: rgba(0, 0, 0, 0.1);
+    --swing-close-btn-bg: var(--sl-color-gray-6);
+
 
     /* Typography Overrides */
     --sl-font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --sl-font-mono: 'JetBrains Mono', monospace;
-
-    /* Font Sizes - Preventing the "Huge Text" issue */
     --sl-text-xs: 0.75rem;
     --sl-text-sm: 0.875rem;
     --sl-text-base: 1rem;
@@ -27,16 +55,25 @@
     --sl-text-3xl: 1.875rem;
     --sl-text-4xl: 2.25rem;
     --sl-text-5xl: 3rem;
-
-    /* Starlight Heading Mapping */
     --sl-text-h1: var(--sl-text-3xl);
     --sl-text-h2: var(--sl-text-2xl);
     --sl-text-h3: var(--sl-text-xl);
     --sl-text-h4: var(--sl-text-lg);
-
     --sl-line-height: 1.6;
+}
 
-    /* SwingHierarchy Styles */
+[data-theme='dark'] {
+    --sl-color-bg: #120f0d;
+    --sl-color-gray-6: #120f0d;
+    --sl-color-gray-5: #2a211b;
+    --sl-color-white: #ffffff;
+    --sl-color-gray-1: #fcfaf8;
+    --sl-color-gray-2: #e2d9d0;
+    --sl-color-accent-low: #3d2308;
+    --sl-color-accent: #d97706;
+    --sl-color-accent-high: #f59e0b;
+
+    /* Semantic Swing Variables (Dark Mode) */
     --swing-bg-main: #07080a;
     --swing-bg-node: #14151a;
     --swing-bg-node-active: #1e1f26;
@@ -52,6 +89,20 @@
     --swing-shadow-main: 0 0 100px rgba(0, 0, 0, 0.9);
     --swing-shadow-text: 0 2px 10px rgba(0, 0, 0, 0.8);
     --swing-shadow-desc: 0 2px 5px rgba(0, 0, 0, 0.8);
+    --swing-overlay-bg: rgba(0, 0, 0, 0.7);
+    --swing-card-phrase-bg: rgba(255, 255, 255, 0.04);
+    --swing-card-border: rgba(255, 255, 255, 0.1);
+    --swing-close-btn-bg: var(--sl-color-gray-5);
+
+    /* Theme color overrides for Dark Mode */
+    --red: #fb4934;
+    --blue: #83a598;
+    --green: #b8bb26;
+    --purple: #d3869b;
+    --orange: #fe8019;
+    --yellow: #fabd2f;
+
+
 }
 
 body {
@@ -155,7 +206,7 @@ article .card>.sl-flex {
 .card-phrase {
     display: block;
     padding: 0.85rem 1.15rem;
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: var(--swing-card-phrase-bg);
     border-left: 4px solid var(--sl-color-gray-5);
     border-radius: 4px;
     /* Fully rounded corners for a unified feel */
