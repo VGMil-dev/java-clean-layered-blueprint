@@ -82,7 +82,7 @@ const HierarchyNode = ({ data }: NodeProps) => {
     }
 
     return (
-        <div className={`px-6 py-4 rounded-[24px] border-2 transition-all duration-[1000ms] min-w-[200px] font-mono ${bgGradient} ${borderColor} ${glow} ${isActive ? 'scale-110 opacity-100 ring-2 ring-[var(--sl-color-accent)]/20' : 'scale-95 opacity-70'}`}>
+        <div className={`px-4 md:px-6 py-3 md:py-4 rounded-[20px] md:rounded-[24px] border-2 transition-all duration-[1000ms] min-w-[170px] md:min-w-[200px] font-mono ${bgGradient} ${borderColor} ${glow} ${isActive ? 'scale-110 opacity-100 ring-2 ring-[var(--sl-color-accent)]/20' : 'scale-95 opacity-70'}`}>
             <Handle type="target" position={Position.Top} className="!opacity-0" />
             <div className="flex items-center gap-4">
                 <div className={`p-2.5 rounded-xl bg-[var(--swing-bg-white-low)] ${iconColor} transition-all duration-700 ${isActive ? 'scale-110' : ''}`}>
@@ -191,19 +191,19 @@ export default function ComponentHierarchy({ config, description, controlledStep
     const step = config.steps[currentStep];
 
     return (
-        <div className="h-[450px] w-full bg-[var(--swing-bg-main)] rounded-[32px] border-2 border-[var(--swing-border-white-low)] overflow-hidden my-8 relative font-mono">
-            <div className="absolute top-8 left-8 z-20 pointer-events-none max-w-[400px]">
+        <div className="h-[350px] md:h-[450px] w-full bg-[var(--swing-bg-main)] rounded-[32px] border-2 border-[var(--swing-border-white-low)] overflow-hidden my-6 md:my-8 relative font-mono">
+            <div className="absolute top-4 md:top-8 left-4 md:left-8 z-20 pointer-events-none max-w-[240px] md:max-w-[400px]">
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--swing-bg-white-medium)] border border-[var(--swing-border-white-high)] backdrop-blur-xl w-fit">
                         <div className="w-2 h-2 rounded-full bg-[var(--sl-color-accent)] animate-pulse" />
-                        <span className="text-[11px] font-bold text-[var(--sl-color-white)] uppercase tracking-wider">{description}</span>
+                        <span className="text-[10px] md:text-[11px] font-bold text-[var(--sl-color-white)] uppercase tracking-wider">{description}</span>
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <h3 className="text-xl font-bold text-[var(--sl-color-white)] transition-all duration-700" key={`title-${currentStep}`}>
+                        <h3 className="text-lg md:text-xl font-bold text-[var(--sl-color-white)] transition-all duration-700 leading-tight" key={`title-${currentStep}`}>
                             {step.title}
                         </h3>
-                        <p className="text-sm text-[var(--swing-text-medium)] leading-relaxed" key={`desc-${currentStep}`}>
+                        <p className="text-[12px] md:text-sm text-[var(--swing-text-medium)] leading-relaxed" key={`desc-${currentStep}`}>
                             {step.desc}
                         </p>
                     </div>
@@ -214,7 +214,7 @@ export default function ComponentHierarchy({ config, description, controlledStep
                 <FlowContent config={config} currentStep={currentStep} />
             </ReactFlowProvider>
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 pointer-events-none">
+            <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 pointer-events-none">
                 {config.steps.map((_, idx) => (
                     <div
                         key={idx}

@@ -110,8 +110,8 @@ export default function MVCESimulator() {
                 </div>
 
                 {/* Modal Body */}
-                <div className="flex-1 overflow-hidden p-6 md:p-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 h-full">
+                <div className="flex-1 overflow-y-auto lg:overflow-hidden p-4 md:p-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 min-h-0">
 
                         {/* Left Section: Combined Mock UI and Console */}
                         <div className="lg:col-span-4 flex flex-col gap-5 md:gap-6 h-full min-h-0">
@@ -126,17 +126,17 @@ export default function MVCESimulator() {
                                 <div className="flex flex-col items-center justify-center gap-4 py-2">
                                     <div className="text-center">
                                         <div className="text-[9px] text-[var(--sl-color-gray-2)] mb-2 uppercase tracking-[0.2em] font-black">Memory Output</div>
-                                        <div className={`text-6xl md:text-7xl font-black font-mono leading-none ${currentStep === 6 ? 'text-[var(--sl-color-accent)] scale-105 filter drop-shadow-[0_0_30px_rgba(var(--sl-color-accent-rgb),0.3)]' : 'text-[var(--sl-color-gray-5)]'} transition-all duration-1000`}>
+                                        <div className={`text-4xl md:text-7xl font-black font-mono leading-none ${currentStep === 6 ? 'text-[var(--sl-color-accent)] scale-105 filter drop-shadow-[0_0_30px_rgba(var(--sl-color-accent-rgb),0.3)]' : 'text-[var(--sl-color-gray-5)]'} transition-all duration-1000`}>
                                             {currentStep === 6 ? '10' : '0'}
                                         </div>
                                     </div>
                                     <div className="w-full max-w-[240px] relative">
                                         <button
-                                            className={`w-full py-4 rounded-xl border transition-all duration-300 flex items-center justify-center gap-3 font-black text-sm md:text-base
+                                            className={`w-full py-3 md:py-4 rounded-xl border transition-all duration-300 flex items-center justify-center gap-3 font-black text-xs md:text-base
                                                 ${isSimulating && currentStep === 0 ? 'bg-[var(--sl-color-accent)] text-[var(--sl-color-bg)] scale-95 border-[var(--sl-color-accent-high)] shadow-[0_0_30px_rgba(var(--sl-color-accent-rgb),0.5)]' : 'bg-[var(--sl-color-gray-5)] text-[var(--sl-color-gray-1)] border-[var(--sl-color-gray-2)]/20 hover:border-[var(--sl-color-accent)]/50 hover:text-[var(--sl-color-accent)]'}
                                             `}
                                         >
-                                            <MousePointer2 size={20} /> {isSimulating && currentStep === 0 ? 'DISPARANDO' : 'OPERA SUMAR (+)'}
+                                            <MousePointer2 size={18} className="md:w-5 md:h-5" /> {isSimulating && currentStep === 0 ? 'DISPARANDO' : 'OPERA SUMAR (+)'}
                                         </button>
                                         <div className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[var(--sl-color-accent)] animate-ping ${isSimulating && currentStep === 0 ? 'block' : 'hidden'}`} />
                                     </div>
@@ -160,7 +160,7 @@ export default function MVCESimulator() {
                                 </div>
                                 <div
                                     ref={scrollRef}
-                                    className="flex-1 p-8 font-mono text-xs md:text-base overflow-y-auto custom-scrollbar leading-relaxed"
+                                    className="flex-1 p-5 md:p-8 font-mono text-[10px] md:text-base overflow-y-auto custom-scrollbar leading-relaxed"
                                 >
                                     {logs.length === 0 ? (
                                         <div className="text-[var(--sl-color-gray-5)] animate-pulse font-black text-xl flex items-center gap-4">
@@ -179,18 +179,18 @@ export default function MVCESimulator() {
                         </div>
 
                         {/* Right Section: High-Impact Architecture Graph */}
-                        <div className="hidden lg:flex lg:col-span-8 relative rounded-[32px] border-2 border-[var(--sl-color-accent)]/20 overflow-hidden bg-[var(--swing-bg-main)] shadow-inner flex-col p-10">
-                            <div className="absolute top-8 left-8 z-20 pointer-events-none">
-                                <div className="px-6 py-3 rounded-full bg-[var(--sl-color-bg)]/30 border border-[var(--sl-color-accent)]/20 backdrop-blur-3xl shadow-3xl">
-                                    <div className="text-[10px] md:text-xs text-[var(--sl-color-accent)] uppercase tracking-[0.4em] font-black flex items-center gap-4">
-                                        <div className="w-3 h-3 rounded-full bg-[var(--sl-color-accent)] shadow-[0_0_15px_rgba(var(--sl-color-accent-rgb),1)] animate-pulse" />
+                        <div className="lg:col-span-8 relative rounded-[32px] border-2 border-[var(--sl-color-accent)]/20 overflow-hidden bg-[var(--swing-bg-main)] shadow-inner flex flex-col p-4 md:p-10">
+                            <div className="absolute top-4 md:top-8 left-4 md:left-8 z-20 pointer-events-none">
+                                <div className="px-4 md:px-6 py-2 md:py-3 rounded-full bg-[var(--sl-color-bg)]/30 border border-[var(--sl-color-accent)]/20 backdrop-blur-3xl shadow-3xl">
+                                    <div className="text-[9px] md:text-xs text-[var(--sl-color-accent)] uppercase tracking-[0.4em] font-black flex items-center gap-2 md:gap-4">
+                                        <div className="w-2 md:w-3 h-2 md:h-3 rounded-full bg-[var(--sl-color-accent)] shadow-[0_0_15px_rgba(var(--sl-color-accent-rgb),1)] animate-pulse" />
                                         Infraestructura en tiempo real
                                     </div>
                                 </div>
                             </div>
 
                             {/* Reusing ComponentHierarchy with manual control */}
-                            <div className="flex-1 mt-10">
+                            <div className="flex-1 mt-6 md:mt-10">
                                 <ComponentHierarchy
                                     config={HIERARCHY_CONFIGS.MVCE}
                                     description="Visualización Molecular"
@@ -201,9 +201,9 @@ export default function MVCESimulator() {
 
                             {/* Progress Indicator */}
                             <div className="mt-auto relative z-20 pointer-events-none">
-                                <div className="bg-[var(--sl-color-bg)]/20 border border-[var(--sl-color-accent)]/20 p-6 rounded-[32px] backdrop-blur-3xl flex items-center gap-8 shadow-[0_20px_60px_rgba(0,0,0,0.1)]">
-                                    <div className="flex-1">
-                                        <div className="flex justify-between text-[10px] text-[var(--sl-color-gray-1)] uppercase tracking-[0.3em] font-black mb-3 px-2">
+                                <div className="bg-[var(--sl-color-bg)]/20 border border-[var(--sl-color-accent)]/20 p-4 md:p-6 rounded-[24px] md:rounded-[32px] backdrop-blur-3xl flex flex-col md:flex-row items-center gap-4 md:gap-8 shadow-[0_20px_60px_rgba(0,0,0,0.1)]">
+                                    <div className="w-full md:flex-1">
+                                        <div className="flex justify-between text-[9px] md:text-[10px] text-[var(--sl-color-gray-1)] uppercase tracking-[0.3em] font-black mb-2 md:mb-3 px-2">
                                             <span>Estado del Flujo</span>
                                             <span className="text-[var(--sl-color-accent)] font-black">{Math.round(((currentStep + 1) / totalSteps) * 100)}%</span>
                                         </div>
@@ -214,9 +214,9 @@ export default function MVCESimulator() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="px-8 py-4 bg-[var(--sl-color-gray-6)] rounded-[22px] border border-[var(--sl-color-gray-5)] text-center min-w-[240px] shadow-2xl">
-                                        <div className="text-[9px] text-[var(--sl-color-gray-1)]/40 uppercase font-black tracking-[0.2em] mb-1.5 leading-none">Punto de Control</div>
-                                        <div className="text-base md:text-lg text-[var(--sl-color-white)] font-black truncate tracking-tight uppercase">
+                                    <div className="px-4 md:px-8 py-2 md:py-4 bg-[var(--sl-color-gray-6)] rounded-[18px] md:rounded-[22px] border border-[var(--sl-color-gray-5)] text-center w-full md:min-w-[240px] shadow-2xl">
+                                        <div className="text-[8px] md:text-[9px] text-[var(--sl-color-gray-1)]/40 uppercase font-black tracking-[0.2em] mb-1 leading-none">Punto de Control</div>
+                                        <div className="text-xs md:text-lg text-[var(--sl-color-white)] font-black truncate tracking-tight uppercase">
                                             {HIERARCHY_CONFIGS.MVCE.steps[currentStep].title}
                                         </div>
                                     </div>
