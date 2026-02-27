@@ -4,8 +4,6 @@ description: "Implementación de una calculadora avanzada siguiendo el patrón M
 ---
 
 import { Aside } from '@astrojs/starlight/components';
-import MVCEDiagram from '@components/MVCEDiagram';
-import MVCESimulator from '@components/MVCESimulator';
 import ZoomImage from '@components/ZoomImage.astro';
 import imgSequence from '@assets/napkin_mvce_sequence.png';
 
@@ -21,11 +19,7 @@ En este laboratorio final, consolidamos todos los conocimientos de Swing aplican
   El diagrama superior muestra el flujo circular de la información: la **Vista** captura el evento, el **Controlador** lo procesa, el **Modelo** realiza el cálculo y finalmente la **Vista** se actualiza con el resultado.
 </Aside>
 
-### Laboratorio Interactivo: Ciclo de Vida del Evento
 
-Utiliza este simulador para disparar un evento de suma y observar cómo viaja a través de las capas de la arquitectura en tiempo real.
-
-<MVCESimulator client:load />
 
 ### Arquitectura Detallada (Referencia)
 

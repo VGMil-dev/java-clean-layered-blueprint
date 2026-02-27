@@ -82,15 +82,15 @@ const HierarchyNode = ({ data }: NodeProps) => {
     }
 
     return (
-        <div className={`px-4 md:px-6 py-3 md:py-4 rounded-[20px] md:rounded-[24px] border-2 transition-all duration-[1000ms] min-w-[170px] md:min-w-[200px] font-mono ${bgGradient} ${borderColor} ${glow} ${isActive ? 'scale-110 opacity-100 ring-2 ring-[var(--sl-color-accent)]/20' : 'scale-95 opacity-70'}`}>
+        <div className={`px-4 md:px-5 py-2.5 md:py-3.5 rounded-[18px] md:rounded-[22px] border-2 transition-all duration-[1000ms] min-w-[150px] md:min-w-[180px] font-mono ${bgGradient} ${borderColor} ${glow} ${isActive ? 'scale-105 opacity-100 ring-2 ring-[var(--sl-color-accent)]/20' : 'scale-95 opacity-70'}`}>
             <Handle type="target" position={Position.Top} className="!opacity-0" />
             <div className="flex items-center gap-4">
                 <div className={`p-2.5 rounded-xl bg-[var(--swing-bg-white-low)] ${iconColor} transition-all duration-700 ${isActive ? 'scale-110' : ''}`}>
                     <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
                 </div>
                 <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold leading-none mb-1.5 text-[var(--swing-text-inactive)]">{typeof data.subtitle === 'string' ? data.subtitle : ''}</span>
-                    <span className={`text-[15px] font-bold tracking-tight transition-colors duration-700 ${isActive ? 'text-[var(--sl-color-white)]' : textColor}`}>{typeof data.label === 'string' ? data.label : ''}</span>
+                    <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold leading-none mb-1 text-[var(--swing-text-inactive)]">{typeof data.subtitle === 'string' ? data.subtitle : ''}</span>
+                    <span className={`text-[13px] md:text-[14px] font-bold tracking-tight transition-colors duration-700 ${isActive ? 'text-[var(--sl-color-white)]' : textColor}`}>{typeof data.label === 'string' ? data.label : ''}</span>
                 </div>
             </div>
             <Handle type="source" position={Position.Bottom} className="!opacity-0" />
@@ -191,7 +191,7 @@ export default function ComponentHierarchy({ config, description, controlledStep
     const step = config.steps[currentStep];
 
     return (
-        <div className="h-[350px] md:h-[450px] w-full bg-[var(--swing-bg-main)] rounded-[32px] border-2 border-[var(--swing-border-white-low)] overflow-hidden my-6 md:my-8 relative font-mono">
+        <div className="h-[350px] md:h-[450px] lg:h-[600px] w-full bg-[var(--swing-bg-main)] rounded-[32px] border-2 border-[var(--swing-border-white-low)] overflow-hidden my-6 md:my-8 relative font-mono">
             <div className="absolute top-4 md:top-8 left-4 md:left-8 z-20 pointer-events-none max-w-[240px] md:max-w-[400px]">
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--swing-bg-white-medium)] border border-[var(--swing-border-white-high)] backdrop-blur-xl w-fit">
