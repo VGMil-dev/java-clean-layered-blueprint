@@ -15,62 +15,36 @@ interface RubricProps {
     };
 }
 
-const LEVEL_COLORS = {
-    DA: 'rgba(245, 158, 11, 0.2)', // Amber/Gold background
-    AA: 'rgba(59, 130, 246, 0.2)',  // Blue background
-    PA: 'rgba(249, 115, 22, 0.2)',  // Orange background
-    NA: 'rgba(239, 68, 68, 0.2)',   // Red background
-};
-
-const BORDER_COLORS = {
-    DA: '#f59e0b',
-    AA: '#3b82f6',
-    PA: '#f97316',
-    NA: '#ef4444',
-};
-
-const TEXT_COLORS = {
-    DA: '#b45309', // Darker Amber
-    AA: '#1d4ed8', // Darker Blue
-    PA: '#c2410c', // Darker Orange
-    NA: '#b91c1c', // Darker Red
-};
-
-
 export default function RubricaEvaluacion({ data }: RubricProps) {
     return (
-        <div className="my-8 overflow-hidden rounded-xl border border-[var(--swing-card-border)] bg-[var(--sl-color-bg)] shadow-2xl">
-            <div className="bg-[var(--sl-color-gray-6)] p-4 border-b border-[var(--swing-card-border)]">
-                <h3 className="text-xl font-bold text-[var(--sl-color-gray-1)] m-0">{data.title}</h3>
+        <div className="my-10 overflow-hidden rounded-2xl border border-[var(--sl-color-gray-5)] bg-[var(--sl-color-bg)]">
+            <div className="bg-[var(--sl-color-gray-6)]/50 px-6 py-4 border-b border-[var(--sl-color-gray-5)]">
+                <h3 className="text-lg font-black text-[var(--sl-color-white)] m-0 uppercase tracking-wider">{data.title}</h3>
             </div>
             <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-sm">
+                <table className="w-full border-collapse">
                     <thead>
-                        <tr className="bg-[var(--sl-color-gray-6)]">
-                            <th className="p-4 text-left font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)] w-1/4">Criterio / Objetivo</th>
-                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">DA (Destacado)</th>
-                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">AA (Alcanzado)</th>
-                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">PA (Proceso)</th>
-                            <th className="p-4 text-center font-semibold text-[var(--sl-color-gray-1)] border-b border-[var(--swing-card-border)]">NA (No Alcanzado)</th>
+                        <tr className="bg-[var(--sl-color-gray-6)]/30 text-[10px] uppercase font-black tracking-widest text-[var(--sl-color-gray-3)]">
+                            <th className="p-5 text-left border-b border-[var(--sl-color-gray-5)] w-1/4">Criterio</th>
+                            <th className="p-5 text-center border-b border-[var(--sl-color-gray-5)] text-[var(--sl-color-accent)]">DA</th>
+                            <th className="p-5 text-center border-b border-[var(--sl-color-gray-5)]">AA</th>
+                            <th className="p-5 text-center border-b border-[var(--sl-color-gray-5)]">PA</th>
+                            <th className="p-5 text-center border-b border-[var(--sl-color-gray-5)]">NA</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-[var(--sl-color-gray-5)] text-sm">
                         {data.criteria.map((item, index) => (
-                            <tr key={index} className="hover:bg-[var(--sl-color-gray-6)] transition-colors border-b border-[var(--swing-card-border)] last:border-0">
-                                <td className="p-4 font-medium text-[var(--sl-color-gray-2)] bg-[var(--swing-bg-white-low)]">{item.objective}</td>
-
-                                {['DA', 'AA', 'PA', 'NA'].map((lvl) => (
-                                    <td key={lvl} className="p-4">
-                                        <div
-                                            className="h-full min-h-[80px] p-3 rounded-lg border flex items-center justify-center text-center leading-relaxed font-medium"
-                                            style={{
-                                                backgroundColor: LEVEL_COLORS[lvl as keyof typeof LEVEL_COLORS],
-                                                borderColor: BORDER_COLORS[lvl as keyof typeof BORDER_COLORS] + '66',
-                                                color: TEXT_COLORS[lvl as keyof typeof TEXT_COLORS],
-                                                filter: 'saturate(1.2) contrast(1.1)'
-                                            }}
-                                        >
-                                            {item[lvl as keyof RubricCriterion]}
+                            <tr key={index} className="group hover:bg-[var(--sl-color-accent)]/[0.02] transition-colors">
+                                <td className="p-5 font-bold text-[var(--sl-color-white)] bg-[var(--sl-color-gray-6)]/20 align-top">
+                                    {item.objective}
+                                </td>
+                                {(['DA', 'AA', 'PA', 'NA'] as const).map((lvl) => (
+                                    <td key={lvl} className="p-5 align-top">
+                                        <div className={`
+                                            text-xs leading-relaxed transition-all duration-300
+                                            ${lvl === 'DA' ? 'text-[var(--sl-color-accent)] font-medium' : 'text-[var(--sl-color-gray-3)] group-hover:text-[var(--sl-color-gray-2)]'}
+                                        `}>
+                                            {item[lvl]}
                                         </div>
                                     </td>
                                 ))}
