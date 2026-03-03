@@ -34,10 +34,10 @@ export default function JButtonPage() {
                     </div>
                     <PropertyGrid
                         properties={[
-                            { method: "addActionListener()", purpose: "Detecta el clic.", reason: "**Vital:** Aquí conectas el código Java al botón." },
+                            { method: "addActionListener()", purpose: "Detecta el clic.", reason: "<strong>Vital:</strong> Aquí conectas el código Java al botón." },
                             { method: "setEnabled(boolean)", purpose: "Activa/Desactiva el botón.", reason: "Evita clics dobles o envíos incompletos." },
                             { method: "setText(String)", purpose: "Actualiza el texto.", reason: "Útil para mostrar el estado (Ej: 'Guardando...')." },
-                            { method: "setToolTipText(String)", purpose: "Añade un globo informativo.", reason: "**UX:** Explica qué hace el botón al pasar el mouse." },
+                            { method: "setToolTipText(String)", purpose: "Añade un globo informativo.", reason: "<strong>UX:</strong> Explica qué hace el botón al pasar el mouse." },
                             { method: "setMnemonic(int)", purpose: "Acceso por teclado.", reason: "Permite usar ALT + letra para pulsar el botón." },
                             { method: "setIcon(Icon)", purpose: "Añade una imagen.", reason: "Crea botones gráficos más profesionales." }
                         ]}

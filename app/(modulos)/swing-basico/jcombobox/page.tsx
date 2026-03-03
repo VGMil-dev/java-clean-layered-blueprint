@@ -34,11 +34,11 @@ export default function JComboBoxPage() {
                     </div>
                     <PropertyGrid
                         properties={[
-                            { method: "getSelectedItem()", purpose: "Recupera la elección.", reason: "**Casting:** Devuelve Object, requiere conversión." },
+                            { method: "getSelectedItem()", purpose: "Recupera la elección.", reason: "<strong>Casting:</strong> Devuelve Object, requiere conversión." },
                             { method: "addItem(Object)", purpose: "Puebla la lista.", reason: "Permite añadir opciones dinámicamente." },
                             { method: "setSelectedIndex(int)", purpose: "Define selección inicial.", reason: "Útil para valores por defecto." },
-                            { method: "removeAllItems()", purpose: "Limpia la lista.", reason: "**Bases de Datos:** Vital antes de recargar nuevos datos." },
-                            { method: "getModel()", purpose: "Acceso al modelo.", reason: "**Avanzado:** Permite manipular ComboBoxModel directamente." }
+                            { method: "removeAllItems()", purpose: "Limpia la lista.", reason: "<strong>Bases de Datos:</strong> Vital antes de recargar nuevos datos." },
+                            { method: "getModel()", purpose: "Acceso al modelo.", reason: "<strong>Avanzado:</strong> Permite manipular ComboBoxModel directamente." }
                         ]}
                     />
                 </section>
@@ -100,10 +100,10 @@ public class MiCombo {
                     Anterior
                 </Link>
                 <Link
-                    href="/swing-basico/evaluacion"
-                    className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-emerald-500 text-black font-bold hover:bg-emerald-400 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-emerald-500/20"
+                    href="/swing-basico/layouts"
+                    className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-amber text-black font-bold hover:bg-amber/90 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-amber/20"
                 >
-                    ¡Ir a Evaluación!
+                    Siguiente: Layouts
                     <ArrowRight className="h-5 w-5" />
                 </Link>
             </div>

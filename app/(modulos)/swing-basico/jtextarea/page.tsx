@@ -34,11 +34,11 @@ export default function JTextAreaPage() {
                     </div>
                     <PropertyGrid
                         properties={[
-                            { method: "append(String)", purpose: "Agrega texto al final.", reason: "**Bitácoras:** Ideal para añadir líneas sin borrar lo anterior." },
+                            { method: "append(String)", purpose: "Agrega texto al final.", reason: "<strong>Bitácoras:</strong> Ideal para añadir líneas sin borrar lo anterior." },
                             { method: "setLineWrap(true)", purpose: "Ajuste de margen.", reason: "Evita que el texto se pierda horizontalmente." },
                             { method: "setWrapStyleWord(true)", purpose: "Salto por palabra.", reason: "Mejora drásticamente la lectura del usuario." },
                             { method: "setRows(int)", purpose: "Altura inicial.", reason: "Define cuántas líneas de texto serán visibles." },
-                            { method: "setEditable(false)", purpose: "Solo lectura.", reason: "**Reportes:** Para mostrar datos que no deben alterarse." }
+                            { method: "setEditable(false)", purpose: "Solo lectura.", reason: "<strong>Reportes:</strong> Para mostrar datos que no deben alterarse." }
                         ]}
                     />
                 </section>

@@ -35,9 +35,9 @@ export default function JScrollPanePage() {
                     <PropertyGrid
                         properties={[
                             { method: "VERTICAL_SCROLLBAR_ALWAYS", purpose: "Barra fija.", reason: "Mantiene la UI estática incluso si no hay texto." },
-                            { method: "VERTICAL_SCROLLBAR_AS_NEEDED", purpose: "Auto-detección.", reason: "**Recomendado:** Solo aparece si el contenido se desborda." },
+                            { method: "VERTICAL_SCROLLBAR_AS_NEEDED", purpose: "Auto-detección.", reason: "<strong>Recomendado:</strong> Solo aparece si el contenido se desborda." },
                             { method: "setViewportView(Component)", purpose: "Define el contenido.", reason: "Alternativa al constructor para añadir el componente." },
-                            { method: "getVerticalScrollBar()", purpose: "Acceso a la barra.", reason: "**Avanzado:** Permite cambiar la velocidad de scroll." },
+                            { method: "getVerticalScrollBar()", purpose: "Acceso a la barra.", reason: "<strong>Avanzado:</strong> Permite cambiar la velocidad de scroll." },
                             { method: "setWheelScrollingEnabled()", purpose: "Control de mouse.", reason: "Habilita/Deshabilita el scroll con la rueda del ratón." }
                         ]}
                     />

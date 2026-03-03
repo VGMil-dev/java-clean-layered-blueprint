@@ -34,10 +34,10 @@ export default function JCheckBoxPage() {
                     </div>
                     <PropertyGrid
                         properties={[
-                            { method: "isSelected()", purpose: "Consulta el estado.", reason: "**Booleano:** Detecta si está marcado o no." },
+                            { method: "isSelected()", purpose: "Consulta el estado.", reason: "<strong>Booleano:</strong> Detecta si está marcado o no." },
                             { method: "setSelected(boolean)", purpose: "Marca/Desmarca.", reason: "Útil para cargar preferencias guardadas." },
                             { method: "setText(String)", purpose: "Define la etiqueta.", reason: "Acompaña al cuadro con una descripción." },
-                            { method: "addItemListener()", purpose: "Escucha cambios.", reason: "**Reactividad:** Ideal para activar otros componentes al marcar." },
+                            { method: "addItemListener()", purpose: "Escucha cambios.", reason: "<strong>Reactividad:</strong> Ideal para activar otros componentes al marcar." },
                             { method: "setEnabled(boolean)", purpose: "Habilita/Deshabilita.", reason: "Bloquea opciones si no se cumple una condición previa." }
                         ]}
                     />

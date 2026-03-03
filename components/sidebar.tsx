@@ -47,6 +47,7 @@ const modules: ModuleItem[] = [
       { id: "jscrollpane", title: "JScrollPane", href: "/swing-basico/jscrollpane" },
       { id: "jcheckbox", title: "JCheckBox", href: "/swing-basico/jcheckbox" },
       { id: "jcombobox", title: "JComboBox", href: "/swing-basico/jcombobox" },
+      { id: "layouts", title: "Layout Managers", href: "/swing-basico/layouts" },
       { id: "evaluacion", title: "Evaluación", href: "/swing-basico/evaluacion" },
     ],
   },

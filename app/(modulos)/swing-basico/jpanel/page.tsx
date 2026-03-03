@@ -52,7 +52,7 @@ export default function JPanelPage() {
                     <PropertyGrid
                         properties={[
                             { method: "setBackground(Color)", purpose: "Define el color base.", reason: "Personalización estética." },
-                            { method: "setLayout(Layout)", purpose: "Reglas de posición.", reason: "**Vital:** Define cómo se mueven los hijos." },
+                            { method: "setLayout(Layout)", purpose: "Reglas de posición.", reason: "<strong>Vital:</strong> Define cómo se mueven los hijos." },
                             { method: "add(Component)", purpose: "Incuba un hijo.", reason: "Permite la jerarquía visual." },
                             { method: "setBorder(Border)", purpose: "Añade un marco.", reason: "Mejora la separación visual (Empty/Line Border)." },
                             { method: "setPreferredSize(Dim)", purpose: "Sugerencia de tamaño.", reason: "Respetado por LayoutManagers modernos." }

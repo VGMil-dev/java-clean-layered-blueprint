@@ -29,6 +29,8 @@ export interface OrderCodeBlockData {
   description: string
   lines: string[]
   correctOrder: number[]
+  penalty?: number
+  minScore?: number
 }
 
 interface SortableLineProps {
@@ -163,7 +165,9 @@ export function OrderCodeBlock({ data, onComplete }: OrderCodeBlockProps) {
       (id, idx) => parseInt(id.split("-")[1]) === data.correctOrder[idx]
     )
     if (isAllCorrect && !completed) {
-      const score = Math.max(100 - (newAttempts - 1) * 20, 20)
+      const penalty = data.penalty ?? 20
+      const minScore = data.minScore ?? 20
+      const score = Math.max(100 - (newAttempts - 1) * penalty, minScore)
       setCompleted(true)
       onComplete?.(score)
     }

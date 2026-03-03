@@ -1,0 +1,805 @@
+[
+    {
+        "id": "mc_01",
+        "type": "multiple_choice",
+        "title": "Función del JFrame",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Cuál es la función principal de un JFrame en Swing?",
+            "options": [
+                "Un botón clickable",
+                "Un contenedor intermedio",
+                "La ventana principal de la aplicación",
+                "Un menú desplegable"
+            ],
+            "correctIndex": 2,
+            "explanation": "JFrame es el contenedor de nivel superior que representa la ventana física en el sistema operativo.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_01",
+        "type": "drag_and_drop",
+        "title": "Metáforas de Swing",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "JFrame",
+                    "definition": "El Edificio (Ventana)"
+                },
+                {
+                    "concept": "JPanel",
+                    "definition": "La Habitación (Contenedor)"
+                },
+                {
+                    "concept": "JLabel",
+                    "definition": "El Cuadro (Texto/Imagen)"
+                },
+                {
+                    "concept": "JButton",
+                    "definition": "El Interruptor (Interactivo)"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_01",
+        "type": "order_code",
+        "title": "Cierre de Ventana",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Configurar Cierre",
+            "description": "Ordena el código para que la aplicación termine al cerrar la ventana.",
+            "lines": [
+                "JFrame frame = new JFrame();",
+                "frame.setDefaultCloseOperation(",
+                "JFrame.EXIT_ON_CLOSE",
+                ");",
+                "frame.setVisible(true);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_02",
+        "type": "multiple_choice",
+        "title": "Propiedad de JButton",
+        "iconColor": "amber",
+        "data": {
+            "question": "Metodo para cambiar el texto visible de un JButton:",
+            "options": [
+                "setTitle()",
+                "setText()",
+                "setValue()",
+                "setContentText()"
+            ],
+            "correctIndex": 1,
+            "explanation": "Al igual que JLabel, los botones usan setText() para modificar su etiqueta visible.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_03",
+        "type": "multiple_choice",
+        "title": "Visibilidad",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Qué sucede si no llamas a setVisible(true) en un JFrame?",
+            "options": [
+                "La ventana se abre minimizada",
+                "La ventana no aparecerá en pantalla",
+                "La aplicación lanza una excepción",
+                "Se abre solo el panel interno"
+            ],
+            "correctIndex": 1,
+            "explanation": "Por defecto, las ventanas en Swing se crean invisibles para permitir configurarlas antes de mostrarlas.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_04",
+        "type": "multiple_choice",
+        "title": "JLabel e Imágenes",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Puede un JLabel mostrar algo más que texto simple?",
+            "options": [
+                "No, solo texto",
+                "Sí, puede mostrar una imagen (Icon)",
+                "Sí, pero solo videos cortos",
+                "Solo puede mostrar colores sólidos"
+            ],
+            "correctIndex": 1,
+            "explanation": "JLabel soporta tanto texto como instancias de Icon (usualmente ImageIcon).",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_02",
+        "type": "drag_and_drop",
+        "title": "Dimensiones en setBounds",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "Primer parámetro",
+                    "definition": "Posición X (Horizontal)"
+                },
+                {
+                    "concept": "Segundo parámetro",
+                    "definition": "Posición Y (Vertical)"
+                },
+                {
+                    "concept": "Tercer parámetro",
+                    "definition": "Ancho (Width)"
+                },
+                {
+                    "concept": "Cuarto parámetro",
+                    "definition": "Alto (Height)"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_05",
+        "type": "multiple_choice",
+        "title": "JTextField vs JTextArea",
+        "iconColor": "amber",
+        "data": {
+            "question": "Diferencia principal entre JTextField y JTextArea:",
+            "options": [
+                "JTextField es para números únicamente",
+                "JTextArea permite múltiples líneas de texto",
+                "JTextField no puede tener bordes",
+                "JTextArea es el único que acepta eventos"
+            ],
+            "correctIndex": 1,
+            "explanation": "JTextField es de una sola línea, mientras que JTextArea está diseñado para bloques de texto.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_06",
+        "type": "multiple_choice",
+        "title": "JCheckBox",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Que método devuelve el estado (marcado/desmarcado) de un JCheckBox?",
+            "options": [
+                "getChecked()",
+                "getValue()",
+                "isSelected()",
+                "isMarked()"
+            ],
+            "correctIndex": 2,
+            "explanation": "isSelected() devuelve un booleano indicando si el cuadro está activo.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_02",
+        "type": "order_code",
+        "title": "Jerarquía de Componentes",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Anidamiento",
+            "description": "Ordena la estructura lógica para que un botón aparezca dentro de un panel en una ventana.",
+            "lines": [
+                "JFrame v = new JFrame();",
+                "JPanel p = new JPanel();",
+                "JButton b = new JButton(\"Click\");",
+                "p.add(b);",
+                "v.add(p);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_07",
+        "type": "multiple_choice",
+        "title": "JComboBox Casting",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Por qué es necesario convertir (cast) el resultado de getSelectedItem()?",
+            "options": [
+                "Porque siempre devuelve un número",
+                "Porque el método devuelve un tipo genérico Object",
+                "Para evitar errores de memoria RAM",
+                "No es necesario, es opcional"
+            ],
+            "correctIndex": 1,
+            "explanation": "Como puede contener cualquier cosa, Swing devuelve Object y debemos decirle que es un String (u otro tipo).",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_08",
+        "type": "multiple_choice",
+        "title": "JScrollPane",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Qué componente agregarías a un JTextArea para que tenga barras de desplazamiento?",
+            "options": [
+                "JScrollArea",
+                "JScrollBar",
+                "JScrollPane",
+                "JContainer"
+            ],
+            "correctIndex": 2,
+            "explanation": "JScrollPane actúa como una 'ventana con visor' para componentes grandes.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_09",
+        "type": "multiple_choice",
+        "title": "Layout Manager",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Qué hace setLayout(null) en un contenedor?",
+            "options": [
+                "Desactiva el panel por completo",
+                "Permite posicionar componentes manualmente (x,y)",
+                "Centra todos los componentes automáticamente",
+                "Cambia el color de fondo a transparente"
+            ],
+            "correctIndex": 1,
+            "explanation": "Al poner el Layout en null, asumimos el control total mediante setBounds().",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_03",
+        "type": "drag_and_drop",
+        "title": "Prefijos de Nomenclatura",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "btn",
+                    "definition": "JButton (Botón)"
+                },
+                {
+                    "concept": "lbl",
+                    "definition": "JLabel (Etiqueta)"
+                },
+                {
+                    "concept": "txt",
+                    "definition": "JTextField (Entrada)"
+                },
+                {
+                    "concept": "cbx",
+                    "definition": "JComboBox (Selector)"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_10",
+        "type": "multiple_choice",
+        "title": "JFrame Resizable",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Cómo impides que el usuario cambie el tamaño de la ventana?",
+            "options": [
+                "setFixedSize(true)",
+                "setResizable(false)",
+                "lockDimensions(true)",
+                "setSizeControl(null)"
+            ],
+            "correctIndex": 1,
+            "explanation": "setResizable(false) deshabilita los bordes de arrastre de la ventana.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_11",
+        "type": "multiple_choice",
+        "title": "Color de Fondo",
+        "iconColor": "amber",
+        "data": {
+            "question": "Metodo para cambiar el color de fondo de un JPanel:",
+            "options": [
+                "setPaint()",
+                "setColor()",
+                "setBackground()",
+                "setFill()"
+            ],
+            "correctIndex": 2,
+            "explanation": "setBackground() recibe un objeto de la clase java.awt.Color.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_03",
+        "type": "order_code",
+        "title": "Acción de Botón",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Listener Básico",
+            "description": "Completa la estructura para detectar un click en el botón.",
+            "lines": [
+                "btn.addActionListener(e -> {",
+                "    System.out.println(\"Click!\");",
+                "});"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_12",
+        "type": "multiple_choice",
+        "title": "JFrame Title",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Metodo para poner texto en la barra superior de la ventana?",
+            "options": [
+                "setHeader()",
+                "setHeading()",
+                "setTitle()",
+                "setTopText()"
+            ],
+            "correctIndex": 2,
+            "explanation": "setTitle() define el nombre que aparece en la barra de título.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_04",
+        "type": "drag_and_drop",
+        "title": "Propiedades de Texto",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "Editable",
+                    "definition": "setEditable(boolean)"
+                },
+                {
+                    "concept": "Fuente",
+                    "definition": "setFont(Font)"
+                },
+                {
+                    "concept": "Color Letra",
+                    "definition": "setForeground(Color)"
+                },
+                {
+                    "concept": "Color Fondo",
+                    "definition": "setBackground(Color)"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_13",
+        "type": "multiple_choice",
+        "title": "Swing Package",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿A qué paquete pertenecen la mayoría de los componentes como JFrame?",
+            "options": [
+                "java.swing.*",
+                "javax.swing.*",
+                "java.ui.swing.*",
+                "javax.java.swing.*"
+            ],
+            "correctIndex": 1,
+            "explanation": "javax.swing es el paquete estándar para los componentes de la biblioteca Swing.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_14",
+        "type": "multiple_choice",
+        "title": "JPanel Layout",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Cuál es el Layout por defecto de un JPanel?",
+            "options": [
+                "FlowLayout",
+                "BorderLayout",
+                "GridLayout",
+                "null"
+            ],
+            "correctIndex": 0,
+            "explanation": "Por defecto, los paneles usan FlowLayout (alineación horizontal de izquierda a derecha).",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_04",
+        "type": "order_code",
+        "title": "Configuración JComboBox",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Crear Selector",
+            "description": "Ordena los pasos para tener un combo box con opciones.",
+            "lines": [
+                "String[] items = {\"A\", \"B\"};",
+                "JComboBox cb = new JComboBox(items);",
+                "cb.setSelectedIndex(0);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_05",
+        "type": "drag_and_drop",
+        "title": "Herencia Swing",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "JComponent",
+                    "definition": "Clase base de casi todo Swing"
+                },
+                {
+                    "concept": "JFrame",
+                    "definition": "Hereda de java.awt.Frame"
+                },
+                {
+                    "concept": "JPanel",
+                    "definition": "Hereda de JComponent"
+                },
+                {
+                    "concept": "java.awt.Color",
+                    "definition": "Gestión de paletas"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "mc_15",
+        "type": "multiple_choice",
+        "title": "JTextField columns",
+        "iconColor": "amber",
+        "data": {
+            "question": "¿Qué define el parámetro numérico en 'new JTextField(10)'?",
+            "options": [
+                "El número máximo de caracteres permitidos",
+                "El ancho sugerido en columnas",
+                "La altura en pixeles",
+                "El tamaño de la fuente"
+            ],
+            "correctIndex": 1,
+            "explanation": "Define el ancho preferido basado en el número de caracteres promedio.",
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_05",
+        "type": "order_code",
+        "title": "Scroll con TextArea",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Texto con Scroll",
+            "description": "Configuración correcta para que el area crezca con scroll.",
+            "lines": [
+                "JTextArea area = new JTextArea();",
+                "JScrollPane scroll = new JScrollPane(area);",
+                "panel.add(scroll);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_06",
+        "type": "drag_and_drop",
+        "title": "Gestión de Ventana",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "setVisible",
+                    "definition": "Mostrar u ocultar"
+                },
+                {
+                    "concept": "setSize",
+                    "definition": "Dimensionar (W, H)"
+                },
+                {
+                    "concept": "setTitle",
+                    "definition": "Nombre de barra"
+                },
+                {
+                    "concept": "setLocation",
+                    "definition": "Posicionar (X, Y)"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_07",
+        "type": "drag_and_drop",
+        "title": "Configuración JTextArea",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "setLineWrap",
+                    "definition": "Ajuste automático"
+                },
+                {
+                    "concept": "append",
+                    "definition": "Añadir al final"
+                },
+                {
+                    "concept": "setRows",
+                    "definition": "Altura en líneas"
+                },
+                {
+                    "concept": "setEditable",
+                    "definition": "Permiso escritura"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_08",
+        "type": "drag_and_drop",
+        "title": "Tipos de Layout",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "FlowLayout",
+                    "definition": "Fila horizontal"
+                },
+                {
+                    "concept": "BorderLayout",
+                    "definition": "Puntos cardinales"
+                },
+                {
+                    "concept": "GridLayout",
+                    "definition": "Rejilla uniforme"
+                },
+                {
+                    "concept": "null",
+                    "definition": "Posición manual"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_09",
+        "type": "drag_and_drop",
+        "title": "Eventos en Swing",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "ActionListener",
+                    "definition": "Click de botón"
+                },
+                {
+                    "concept": "KeyListener",
+                    "definition": "Tecla pulsada"
+                },
+                {
+                    "concept": "MouseListener",
+                    "definition": "Gesto del ratón"
+                },
+                {
+                    "concept": "WindowListener",
+                    "definition": "Estado ventana"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "dd_10",
+        "type": "drag_and_drop",
+        "title": "Clasificación",
+        "iconColor": "gruvbox-blue",
+        "data": {
+            "pairs": [
+                {
+                    "concept": "JButton",
+                    "definition": "Control/Acción"
+                },
+                {
+                    "concept": "JLabel",
+                    "definition": "Solo lectura"
+                },
+                {
+                    "concept": "JTextField",
+                    "definition": "Entrada simple"
+                },
+                {
+                    "concept": "JScrollPane",
+                    "definition": "Visor de barras"
+                }
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_06",
+        "type": "order_code",
+        "title": "Panel con Estilo",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Fondo y Borde",
+            "description": "Configura un panel azul sin layout interno.",
+            "lines": [
+                "JPanel p = new JPanel();",
+                "p.setBackground(Color.BLUE);",
+                "p.setLayout(null);",
+                "frame.add(p);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_07",
+        "type": "order_code",
+        "title": "Centrar Ventana",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Posición Inicial",
+            "description": "Haz que la ventana aparezca en el centro de la pantalla.",
+            "lines": [
+                "JFrame f = new JFrame();",
+                "f.setSize(400, 300);",
+                "f.setLocationRelativeTo(null);",
+                "f.setVisible(true);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_08",
+        "type": "order_code",
+        "title": "Configurar Fuente",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Estilo de Texto",
+            "description": "Cambia la fuente de una etiqueta a Arial Negrita 20.",
+            "lines": [
+                "JLabel l = new JLabel(\"Hola\");",
+                "Font f = new Font(\"Arial\", Font.BOLD, 20);",
+                "l.setFont(f);",
+                "panel.add(l);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_09",
+        "type": "order_code",
+        "title": "Configurar Area",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Ajuste de Texto",
+            "description": "Permite que el texto salte de línea automáticamente.",
+            "lines": [
+                "JTextArea t = new JTextArea();",
+                "t.setLineWrap(true);",
+                "t.setWrapStyleWord(true);",
+                "panel.add(t);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    },
+    {
+        "id": "oc_10",
+        "type": "order_code",
+        "title": "Atajos de Botón",
+        "iconColor": "gruvbox-green",
+        "data": {
+            "title": "Mnemónico",
+            "description": "Asigna la tecla Alt+G como acceso rápido al botón.",
+            "lines": [
+                "JButton b = new JButton(\"Guardar\");",
+                "b.setMnemonic('G');",
+                "b.setToolTipText(\"Alt+G\");",
+                "panel.add(b);"
+            ],
+            "correctOrder": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "penalty": 15,
+            "minScore": 30
+        }
+    }
+]

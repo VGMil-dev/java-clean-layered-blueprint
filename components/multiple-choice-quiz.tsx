@@ -11,6 +11,8 @@ export interface MultipleChoiceQuizData {
   options: string[]
   correctIndex: number
   explanation: string
+  penalty?: number
+  minScore?: number
 }
 
 interface MultipleChoiceQuizProps {
@@ -35,7 +37,9 @@ export function MultipleChoiceQuiz({ data, onComplete }: MultipleChoiceQuizProps
       setAttempts(newAttempts)
 
       if (index === data.correctIndex) {
-        const score = Math.max(100 - (newAttempts - 1) * 25, 25)
+        const penalty = data.penalty ?? 25
+        const minScore = data.minScore ?? 25
+        const score = Math.max(100 - (newAttempts - 1) * penalty, minScore)
         if (!completed) {
           setCompleted(true)
           onComplete?.(score)
@@ -90,9 +94,9 @@ export function MultipleChoiceQuiz({ data, onComplete }: MultipleChoiceQuizProps
               animate={
                 showIncorrect
                   ? {
-                      x: [0, -8, 8, -6, 6, -3, 3, 0],
-                      transition: { duration: 0.5 },
-                    }
+                    x: [0, -8, 8, -6, 6, -3, 3, 0],
+                    transition: { duration: 0.5 },
+                  }
                   : undefined
               }
               className={cn(

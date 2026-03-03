@@ -34,11 +34,11 @@ export default function JTextFieldPage() {
                     </div>
                     <PropertyGrid
                         properties={[
-                            { method: "getText()", purpose: "Recupera el contenido.", reason: "**Crucial:** Siempre devuelve un String." },
+                            { method: "getText()", purpose: "Recupera el contenido.", reason: "<strong>Crucial:</strong> Siempre devuelve un String." },
                             { method: "setText(String)", purpose: "Limpia o actualiza el campo.", reason: "Útil para resets de formularios." },
                             { method: "setColumns(int)", purpose: "Define el ancho visual.", reason: "No limita los caracteres, solo el tamaño del campo." },
                             { method: "setEditable(boolean)", purpose: "Bloquea la edición.", reason: "Para campos de solo-lectura (ej. ID autogenerado)." },
-                            { method: "selectAll()", purpose: "Resalta el texto.", reason: "**UX:** Facilita la sobreescritura al hacer focus." }
+                            { method: "selectAll()", purpose: "Resalta el texto.", reason: "<strong>UX:</strong> Facilita la sobreescritura al hacer focus." }
                         ]}
                     />
                 </section>

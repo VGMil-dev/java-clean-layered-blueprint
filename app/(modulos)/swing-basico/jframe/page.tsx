@@ -53,8 +53,8 @@ export default function JFramePage() {
                             { method: "setTitle(String)", purpose: "Define el nombre de la ventana.", reason: "Identificación en la barra de tareas." },
                             { method: "setSize(int, int)", purpose: "Dimensiones iniciales.", reason: "Configura el ancho y alto en píxeles." },
                             { method: "setResizable(boolean)", purpose: "Control de tamaño.", reason: "Evita que el usuario deforme tu diseño." },
-                            { method: "setLocationRelativeTo(null)", purpose: "Centrar la ventana.", reason: "**UX:** Imprescindible para que aparezca centrada." },
-                            { method: "setDefaultCloseOperation()", purpose: "Gestión de salida.", reason: "**Vital:** Sin esto, el proceso no muere al cerrar." },
+                            { method: "setLocationRelativeTo(null)", purpose: "Centrar la ventana.", reason: "<strong>UX:</strong> Imprescindible para que aparezca centrada." },
+                            { method: "setDefaultCloseOperation()", purpose: "Gestión de salida.", reason: "<strong>Vital:</strong> Sin esto, el proceso no muere al cerrar." },
                             { method: "setVisible(true)", purpose: "Dibujado final.", reason: "Por defecto, los JFrame nacen ocultos." }
                         ]}
                     />

@@ -8,6 +8,8 @@ import { GlassCard } from "@/components/glass-card"
 
 export interface DragAndDropMatchData {
   pairs: { concept: string; definition: string }[]
+  penalty?: number
+  minScore?: number
 }
 
 interface MatchState {
@@ -67,7 +69,9 @@ export function DragAndDropMatch({ data, onComplete }: DragAndDropMatchProps) {
 
     const isAllCorrect = data.pairs.every((p) => matches[p.concept] === correctMap[p.concept])
     if (isAllCorrect && !completed) {
-      const score = Math.max(100 - (newAttempts - 1) * 20, 20)
+      const penalty = data.penalty ?? 20
+      const minScore = data.minScore ?? 20
+      const score = Math.max(100 - (newAttempts - 1) * penalty, minScore)
       setCompleted(true)
       onComplete?.(score)
     }
