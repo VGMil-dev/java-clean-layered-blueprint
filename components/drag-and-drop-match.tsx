@@ -69,9 +69,7 @@ export function DragAndDropMatch({ data, onComplete }: DragAndDropMatchProps) {
 
     const isAllCorrect = data.pairs.every((p) => matches[p.concept] === correctMap[p.concept])
     if (isAllCorrect && !completed) {
-      const penalty = data.penalty ?? 20
-      const minScore = data.minScore ?? 20
-      const score = Math.max(100 - (newAttempts - 1) * penalty, minScore)
+      const score = Math.max(Math.round(100 * Math.pow(0.5, newAttempts - 1)), 10)
       setCompleted(true)
       onComplete?.(score)
     }

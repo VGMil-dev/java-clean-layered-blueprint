@@ -37,9 +37,7 @@ export function MultipleChoiceQuiz({ data, onComplete }: MultipleChoiceQuizProps
       setAttempts(newAttempts)
 
       if (index === data.correctIndex) {
-        const penalty = data.penalty ?? 25
-        const minScore = data.minScore ?? 25
-        const score = Math.max(100 - (newAttempts - 1) * penalty, minScore)
+        const score = Math.max(Math.round(100 * Math.pow(0.5, newAttempts - 1)), 10)
         if (!completed) {
           setCompleted(true)
           onComplete?.(score)
@@ -81,7 +79,7 @@ export function MultipleChoiceQuiz({ data, onComplete }: MultipleChoiceQuizProps
         {data.options.map((option, index) => {
           const isSelected = selectedIndex === index
           const isCorrectOption = index === data.correctIndex
-          const showCorrect = hasSubmitted && isCorrectOption
+          const showCorrect = hasSubmitted && isCorrect && isCorrectOption
           const showIncorrect = hasSubmitted && isSelected && !isCorrect
 
           return (
@@ -104,7 +102,7 @@ export function MultipleChoiceQuiz({ data, onComplete }: MultipleChoiceQuizProps
                 !hasSubmitted && "border-glass-border hover:border-amber/40 hover:bg-amber/5 cursor-pointer",
                 showCorrect && "border-success/50 bg-success/10",
                 showIncorrect && "border-destructive/50 bg-destructive/10",
-                hasSubmitted && !isSelected && !isCorrectOption && "opacity-40 border-glass-border"
+                hasSubmitted && !isSelected && "opacity-40 border-glass-border"
               )}
               role="radio"
               aria-checked={isSelected}
@@ -188,12 +186,14 @@ export function MultipleChoiceQuiz({ data, onComplete }: MultipleChoiceQuizProps
                   {isCorrect ? "Correcto!" : "Incorrecto"}
                 </span>
               </div>
-              <div className="flex items-start gap-2">
-                <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber" />
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {data.explanation}
-                </p>
-              </div>
+              {isCorrect && (
+                <div className="flex items-start gap-2">
+                  <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber" />
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {data.explanation}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Retry button */}

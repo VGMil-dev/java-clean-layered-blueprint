@@ -51,11 +51,11 @@ const modules: ModuleItem[] = [
       { id: "evaluacion", title: "Evaluación", href: "/swing-basico/evaluacion" },
     ],
   },
-  { id: "control-flow", title: "Flujo de Control", description: "if, else, switch", unlocked: false, completed: false },
-  { id: "loops", title: "Bucles", description: "for, while", unlocked: false, completed: false },
-  { id: "arrays", title: "Arrays", description: "Arreglos y matrices", unlocked: false, completed: false },
-  { id: "methods", title: "Métodos", description: "Funciones y parámetros", unlocked: false, completed: false },
-  { id: "poo", title: "POO", description: "Clases y objetos", unlocked: false, completed: false },
+  { id: "control-flow", title: "Próximamente", description: "", unlocked: false, completed: false },
+  { id: "loops", title: "Próximamente", description: "", unlocked: false, completed: false },
+  { id: "arrays", title: "Próximamente", description: "", unlocked: false, completed: false },
+  { id: "methods", title: "Próximamente", description: "", unlocked: false, completed: false },
+  { id: "poo", title: "Próximamente", description: "", unlocked: false, completed: false },
 ]
 
 export function Sidebar() {

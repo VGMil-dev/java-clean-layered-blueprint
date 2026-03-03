@@ -108,24 +108,21 @@ export function OrderCodeBlock({ data, onComplete }: OrderCodeBlockProps) {
   const dndId = useId()
   const [completed, setCompleted] = useState(false)
 
-  const [items, setItems] = useState<string[]>(() =>
-    data.lines.map((_, i) => `line-${i}`)
-  )
+  const [items, setItems] = useState<string[]>(() => {
+    const initial = data.lines.map((_, i) => `line-${i}`)
+    const shuffled = [...initial].sort(() => Math.random() - 0.5)
 
-  useEffect(() => {
-    setItems((prev) => {
-      const shuffled = [...prev].sort(() => Math.random() - 0.5)
-      const isCorrect = shuffled.every(
-        (id, idx) => parseInt(id.split("-")[1]) === data.correctOrder[idx]
-      )
-      if (isCorrect) {
-        const temp = shuffled[0]
-        shuffled[0] = shuffled[shuffled.length - 1]
-        shuffled[shuffled.length - 1] = temp
-      }
-      return shuffled
-    })
-  }, [data.correctOrder])
+    // Ensure it's not accidentally correct on first try
+    const isCorrect = shuffled.every(
+      (id, idx) => parseInt(id.split("-")[1]) === data.correctOrder[idx]
+    )
+    if (isCorrect && shuffled.length > 1) {
+      const temp = shuffled[0]
+      shuffled[0] = shuffled[shuffled.length - 1]
+      shuffled[shuffled.length - 1] = temp
+    }
+    return shuffled
+  })
 
   const [verified, setVerified] = useState(false)
   const [attempts, setAttempts] = useState(0)
@@ -165,9 +162,7 @@ export function OrderCodeBlock({ data, onComplete }: OrderCodeBlockProps) {
       (id, idx) => parseInt(id.split("-")[1]) === data.correctOrder[idx]
     )
     if (isAllCorrect && !completed) {
-      const penalty = data.penalty ?? 20
-      const minScore = data.minScore ?? 20
-      const score = Math.max(100 - (newAttempts - 1) * penalty, minScore)
+      const score = Math.max(Math.round(100 * Math.pow(0.5, newAttempts - 1)), 10)
       setCompleted(true)
       onComplete?.(score)
     }

@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { User, Send, Loader2, CheckCircle2, XCircle, X } from "lucide-react"
+import { User, Send, Loader2, CheckCircle2, XCircle, X, CreditCard, AlertTriangle } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 
 interface ExerciseResult {
@@ -13,48 +13,125 @@ interface ExerciseResult {
 interface StudentFormProps {
   open: boolean
   onClose: () => void
+  onSaved?: (attempts: number[]) => void
   day: string
   results: ExerciseResult[]
+  totalQuestions?: number
 }
 
-export function StudentForm({ open, onClose, day, results }: StudentFormProps) {
+export function StudentForm({ open, onClose, onSaved, day, results, totalQuestions }: StudentFormProps) {
   const [nombre, setNombre] = useState("")
   const [apellido, setApellido] = useState("")
+  const [cedula, setCedula] = useState("")
   const [curso, setCurso] = useState("")
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState(false)
+  const [attempts, setAttempts] = useState<number[]>([])
+  const [isHydrated, setIsHydrated] = useState(false)
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false)
+
+  const fetchHistory = useCallback(async (studentCedula: string) => {
+    if (!studentCedula) return
+    setIsLoadingHistory(true)
+    try {
+      const { data, error } = await supabase
+        .from("user_progress")
+        .select("score")
+        .eq("student_cedula", studentCedula)
+        .eq("day", day)
+        .eq("component_type", "total")
+        .order("completed_at", { ascending: true })
+
+      if (error) throw error
+      if (data) {
+        setAttempts(data.map(r => r.score))
+      }
+    } catch (e: any) {
+      console.error("Error fetching history:", e?.message || e)
+    } finally {
+      setIsLoadingHistory(false)
+    }
+  }, [day])
+
+  // Load student data from localStorage
+  useEffect(() => {
+    setIsHydrated(true)
+    const savedId = localStorage.getItem("repojava_student_cedula")
+    const savedName = localStorage.getItem("repojava_student_name")
+    const savedLastname = localStorage.getItem("repojava_student_lastname")
+    const savedCourse = localStorage.getItem("repojava_student_course")
+
+    if (savedId) {
+      setCedula(savedId)
+      fetchHistory(savedId)
+    }
+    if (savedName) setNombre(savedName)
+    if (savedLastname) setApellido(savedLastname)
+    if (savedCourse) setCurso(savedCourse)
+  }, [day, fetchHistory])
+
+  // Fetch history when cedula is manually entered (10 digits)
+  useEffect(() => {
+    if (cedula.length === 10) {
+      fetchHistory(cedula)
+    }
+  }, [cedula, fetchHistory])
 
   const courses = ["2E1G1", "2E1G2", "2E2G1", "2E2G2"]
 
+  const divisor = totalQuestions && totalQuestions > 0 ? totalQuestions : results.length
   const totalScore = results.reduce((sum, r) => sum + r.score, 0)
-  const averageScore = results.length > 0 ? Math.round(totalScore / results.length) : 0
+  const currentAttemptScore = divisor > 0 ? Math.round(totalScore / divisor) : 0
+
+  // Calculate Average with previous attempts
+  const allAttemptScores = [...attempts, currentAttemptScore]
+  const averageScore = allAttemptScores.length > 0 ? Math.round(allAttemptScores.reduce((a, b) => a + b, 0) / allAttemptScores.length) : 0
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault()
-      if (!nombre.trim() || !apellido.trim() || !curso) return
+      if (!nombre.trim() || !apellido.trim() || !cedula.trim() || !curso) return
       setSaving(true)
       setError(false)
 
       try {
-        const rows = results.map((r) => ({
+        // Prepare one single summary row instead of multiple question rows
+        const summaryRow = {
           day,
           student_name: nombre.trim(),
           student_lastname: apellido.trim(),
+          student_cedula: cedula.trim(),
           student_course: curso,
-          component_type: r.componentType,
-          score: r.score,
+          component_type: "total",
+          score: currentAttemptScore,
+          attempt_number: attempts.length + 1,
+          final_average: averageScore,
           completed_at: new Date().toISOString(),
-        }))
+        }
 
-        const { error: dbError } = await supabase.from("user_progress").insert(rows)
+        const { error: dbError } = await supabase.from("user_progress").insert([summaryRow])
 
         if (dbError) {
           console.error("Error saving progress:", dbError.message)
           setError(true)
         } else {
+          // Save student identification to localStorage for persistence
+          localStorage.setItem("repojava_student_cedula", cedula.trim())
+          localStorage.setItem("repojava_student_name", nombre.trim())
+          localStorage.setItem("repojava_student_lastname", apellido.trim())
+          localStorage.setItem("repojava_student_course", curso)
+
+          const updatedAttempts = [...attempts, currentAttemptScore]
+          setAttempts(updatedAttempts)
+          if (onSaved) onSaved(updatedAttempts)
+
           setSaved(true)
+
+          // Clear current session results upon success
+          localStorage.removeItem(`repojava_eval_results_${day}`)
+          localStorage.removeItem(`repojava_eval_selected_${day}`)
+          localStorage.removeItem(`repojava_eval_step_${day}`)
         }
       } catch (err) {
         console.error("Error saving:", err)
@@ -63,7 +140,7 @@ export function StudentForm({ open, onClose, day, results }: StudentFormProps) {
         setSaving(false)
       }
     },
-    [nombre, apellido, curso, day, results]
+    [nombre, apellido, cedula, curso, day, results, attempts, averageScore, currentAttemptScore, onSaved]
   )
 
   return (
@@ -128,48 +205,95 @@ export function StudentForm({ open, onClose, day, results }: StudentFormProps) {
                 </div>
 
                 {/* Score preview */}
-                <div className="glass-subtle rounded-xl px-4 py-3 mb-6 flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">
-                    Puntuacion promedio
-                  </span>
-                  <span className="text-lg font-bold text-amber">{averageScore}%</span>
+                <div className="flex flex-col gap-2 mb-6">
+                  <div className="glass-subtle rounded-xl px-4 py-3 flex items-center justify-between border-amber/10 border bg-amber/5">
+                    <span className="text-sm font-medium text-amber-intense flex items-center gap-2">
+                      Puntuación de este intento
+                    </span>
+                    <span className="text-lg font-bold text-amber-intense">{currentAttemptScore}%</span>
+                  </div>
+
+                  {attempts.length > 0 && (
+                    <div className="flex items-center gap-2 px-1">
+                      <div className="h-px flex-1 bg-glass-border"></div>
+                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">Historial</span>
+                      <div className="h-px flex-1 bg-glass-border"></div>
+                    </div>
+                  )}
+
+                  <div className="glass-subtle rounded-xl px-4 py-3 flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-sm text-foreground font-bold">Nota Final Promediada</span>
+                      <span className="text-[10px] text-muted-foreground">
+                        {attempts.length + 1} intento(s) realizados
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xl font-black text-amber amber-text-glow">{averageScore}%</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label
-                      htmlFor="nombre"
-                      className="block text-sm font-medium text-foreground mb-1.5"
-                    >
-                      Nombre
-                    </label>
-                    <input
-                      id="nombre"
-                      type="text"
-                      required
-                      value={nombre}
-                      onChange={(e) => setNombre(e.target.value)}
-                      placeholder="Ej: Carlos"
-                      className="w-full rounded-xl border border-glass-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-amber/50 focus:ring-1 focus:ring-amber/30"
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="nombre"
+                        className="block text-sm font-medium text-foreground mb-1.5"
+                      >
+                        Nombre
+                      </label>
+                      <input
+                        id="nombre"
+                        type="text"
+                        required
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        placeholder="Ej: Carlos"
+                        className="w-full rounded-xl border border-glass-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-amber/50 focus:ring-1 focus:ring-amber/30"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="apellido"
+                        className="block text-sm font-medium text-foreground mb-1.5"
+                      >
+                        Apellido
+                      </label>
+                      <input
+                        id="apellido"
+                        type="text"
+                        required
+                        value={apellido}
+                        onChange={(e) => setApellido(e.target.value)}
+                        placeholder="Ej: Garcia"
+                        className="w-full rounded-xl border border-glass-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-amber/50 focus:ring-1 focus:ring-amber/30"
+                      />
+                    </div>
                   </div>
+
                   <div>
                     <label
-                      htmlFor="apellido"
-                      className="block text-sm font-medium text-foreground mb-1.5"
+                      htmlFor="cedula"
+                      className="block text-sm font-medium text-foreground mb-1.5 flex items-center gap-2"
                     >
-                      Apellido
+                      <CreditCard className="h-3.5 w-3.5 text-amber" />
+                      Número de Cédula (Único)
                     </label>
                     <input
-                      id="apellido"
+                      id="cedula"
                       type="text"
                       required
-                      value={apellido}
-                      onChange={(e) => setApellido(e.target.value)}
-                      placeholder="Ej: Garcia"
-                      className="w-full rounded-xl border border-glass-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-amber/50 focus:ring-1 focus:ring-amber/30"
+                      value={cedula}
+                      onChange={(e) => setCedula(e.target.value)}
+                      placeholder="Ej: 1723456789"
+                      className="w-full rounded-xl border border-glass-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-all focus:border-amber focus:ring-1 focus:ring-amber/30 font-mono"
                     />
+                    <p className="mt-1.5 text-[10px] text-muted-foreground italic flex items-start gap-1">
+                      <AlertTriangle className="h-3 w-3 shrink-0" />
+                      Este número servirá para identificarte y promediar tus notas. No te equivoques.
+                    </p>
                   </div>
                   <div>
                     <label
@@ -207,10 +331,10 @@ export function StudentForm({ open, onClose, day, results }: StudentFormProps) {
 
                   <motion.button
                     type="submit"
-                    disabled={saving || !nombre.trim() || !apellido.trim() || !curso}
+                    disabled={saving || !nombre.trim() || !apellido.trim() || !cedula.trim() || !curso}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-amber px-5 py-3 text-sm font-bold text-primary-foreground transition-all amber-glow hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-amber px-5 py-4 text-sm font-black text-primary-foreground transition-all amber-glow hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     {saving ? (
                       <>
